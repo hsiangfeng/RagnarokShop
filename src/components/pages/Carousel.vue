@@ -4,40 +4,40 @@
     <swiper :options="swiperOption">
       <!-- <swiper-slide><img src="../assets/img/silder/Novice.jpg" width="350"></swiper-slide> -->
       <swiper-slide>
-        <img src="../assets/img/silder/RuneKnight.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/RuneKnight.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Shadow Chaser.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Shadow Chaser.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Shura.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Shura.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Sorcerer.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Sorcerer.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Mechanic.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Mechanic.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/GuillotineCross.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/GuillotineCross.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Genetic.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Genetic.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Archbishop.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Archbishop.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Minstrel.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Minstrel.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Ranger.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Ranger.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Wanderer.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Wanderer.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/silder/Warlock.jpg" width="350" class="img-fluid">
+        <img src="@/assets/img/silder/Warlock.jpg" width="350" class="img-fluid">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>

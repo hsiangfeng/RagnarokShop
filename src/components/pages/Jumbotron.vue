@@ -6,15 +6,15 @@
       :fadeOut="true"
       class="justify-content-center align-items-center">
         <h1 class="text-ro">
-          一起找回最初的感動...
+          一起找回最初的感動…
           <br>
           <span class="typing"></span>
         </h1>
       </vue-typed-js>
       <div class="banner">
-        <img src="../assets/img/poring.gif" class="img-fluid logo-poring" width="50px">
-        <img src="../assets/img/1181362684.gif" class="img-fluid" width="500px">
-        <img src="../assets/img/UTMuP.gif"
+        <img src="@/assets/img/poring.gif" class="img-fluid logo-poring" width="50px">
+        <img src="@/assets/img/1181362684.gif" class="img-fluid" width="500px">
+        <img src="@/assets/img/UTMuP.gif"
         class="img-fluid logo-poring-end d-none d-md-block"
         width="180px">
       </div>
@@ -22,7 +22,7 @@
   </header>
 </template>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
   .banner {
     position: relative;
   }

@@ -6,7 +6,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -29,7 +29,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -52,7 +52,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -96,7 +96,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -119,7 +119,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -142,7 +142,7 @@
         <li class="list-item">
           <div class="shop-body p-2">
             <div class="shop-top">
-              <img src="../assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
             </div>
             <div class="shop-content">
               <h4>
@@ -170,7 +170,7 @@
   </section>
 </template>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .list-items {
   padding: 0;
 }

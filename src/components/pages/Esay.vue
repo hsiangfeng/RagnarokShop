@@ -9,7 +9,7 @@
             <p>透過買裝備只是一個開始，可是讓你在自己遊玩的時候快速達到你所想要的目標。</p>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/img/Esay/card_10.jpg" width="450px" class="img-fluid">
+            <img src="@/assets/img/Esay/card_10.jpg" width="450px" class="img-fluid">
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
             <p>提供給你一個平台可以隨時隨地立即性找尋隊友，也會有隊友評價指數，確保您不遇到雷雷好朋友。</p>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/img/Esay/img_localize.png" width="450px" class="img-fluid">
+            <img src="@/assets/img/Esay/img_localize.png" width="450px" class="img-fluid">
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
             <p>透過買裝備只是一個開始，可是讓你在自己遊玩的時候快速達到你所想要的目標。</p>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/img/Esay/with.jpg" width="450px" class="img-fluid">
+            <img src="@/assets/img/Esay/with.jpg" width="450px" class="img-fluid">
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
             <p>透過買裝備只是一個開始，可是讓你在自己遊玩的時候快速達到你所想要的目標。</p>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/img/Esay/youtube.png" width="450px" class="img-fluid">
+            <img src="@/assets/img/Esay/youtube.png" width="450px" class="img-fluid">
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
   </section>
 </template>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .esay-section,
 .easy-point {
   position: relative;
@@ -79,5 +79,10 @@
 </style>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+    };
+  },
+};
 </script>

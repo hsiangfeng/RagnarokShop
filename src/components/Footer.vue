@@ -16,7 +16,7 @@
           </a>
         </div>
         <div class="col-md-4 d-flex justify-content-center align-items-center text-center">
-          <img src="../assets/img/1181362684.gif"
+          <img src="@/assets/img/1181362684.gif"
           alt srcset width="150px"
           class="img-fluid">
         </div>
@@ -28,7 +28,7 @@
   </footer>
 </template>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .author {
   border-right: 1px solid #fff;
   padding-right: 10px;

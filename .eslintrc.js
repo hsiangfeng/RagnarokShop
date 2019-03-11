@@ -45,7 +45,8 @@ module.exports = {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "no-console": 0, // 關掉console.log()提示
+    "no-alert": 0, // alert提示
   },
-  
 }
