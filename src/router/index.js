@@ -10,6 +10,8 @@ import ProductsList from '@/components/admin/pages/ProductsList';
 import ProductsCard from '@/components/admin/pages/ProductsCard';
 import Coupons from '@/components/admin/pages/Coupons';
 import Orders from '@/components/admin/pages/Orders';
+import CustomerOrders from '@/components/admin/pages/CustomerOrders';
+import CustomerCheck from '@/components/admin/pages/CustomerCheck';
 
 Vue.use(Router);
 
@@ -22,6 +24,10 @@ export default new Router({
   //   };
   // },
   routes: [
+    {
+      path: '*',
+      redirect: '/login',
+    },
     {
       path: '/',
       name: '',
@@ -75,6 +81,16 @@ export default new Router({
           path: '/orders',
           name: 'Orders',
           component: Orders,
+        },
+        {
+          path: '/customer_orders',
+          name: 'CustomerOrders',
+          component: CustomerOrders,
+        },
+        {
+          path: '/customer_crders/:orderId',
+          name: 'CustomerCheck',
+          component: CustomerCheck,
         },
       ],
     },

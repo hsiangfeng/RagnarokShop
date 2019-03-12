@@ -38,13 +38,13 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link font-weight-bold p-5" to="/orders">
+              <router-link class="nav-link font-weight-bold p-5" to="/customer_orders">
                 模擬訂單
               </router-link>
             </li>
           </ul>
-          <a href="#" class="font-weight-bold p-5" @click.prevent="signOut">
-            登出
+          <a href="#" class="font-weight-bold p-5 text-white" @click.prevent="signOut">
+            <font-awesome-icon :icon="['fas', 'sign-out-alt']"/> 登出
           </a>
         </div>
       </nav>

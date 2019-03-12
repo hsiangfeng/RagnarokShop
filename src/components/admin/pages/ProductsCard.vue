@@ -13,7 +13,7 @@
       <button type="button"
       class="btn btn-ro text-white"
       @click="openModel('new')">
-        新增產品
+        <font-awesome-icon :icon="['fas', 'plus']"/> 新增產品
       </button>
     </div>
     <div class="card-columns">
@@ -23,7 +23,10 @@
           <img class="card-img-top" :src="item.image" v-if="item.image">
         </a>
         <div class="card-body">
-          <h5 class="card-title">{{item.title}}({{item.category}})</h5>
+          <span class="badge badge-secondary float-right">{{item.category}}</span>
+          <h5 class="card-title">
+            {{item.title}}
+          </h5>
           <p class="card-text">
             {{item.content}}
           </p>
@@ -52,9 +55,13 @@
             </li>
             <li class="list-group-item">
               <button class="btn btn-outline-ro btn-block"
-              @click="openModel('edit', item)">編輯</button>
+              @click="openModel('edit', item)">
+                <font-awesome-icon :icon="['fas', 'edit']"/> 編輯
+              </button>
               <button class="btn btn-outline-danger btn-block"
-              @click="openModel('delete', item)">刪除</button>
+              @click="openModel('delete', item)">
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/> 刪除
+              </button>
             </li>
           </ul>
         </div>
@@ -175,7 +182,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="updataProducts()">確認</button>
+            <button type="button" class="btn btn-primary" @click="updataProducts()">
+              <font-awesome-icon
+              :icon="['fas', 'spinner']"
+              v-if="status.loadingItem"
+              spin/>
+              確認
+            </button>
           </div>
         </div>
       </div>
@@ -197,7 +210,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="deleProducts">確認刪除</button>
+            <button type="button" class="btn btn-danger" @click="deleProducts">
+              <font-awesome-icon
+              :icon="['fas', 'spinner']"
+              v-if="status.loadingItem"
+              spin/>
+              確認刪除
+            </button>
           </div>
         </div>
       </div>
@@ -221,6 +240,7 @@ export default {
       modelTitle: '',
       status: {
         fileUploading: false,
+        loadingItem: false,
       },
     };
   },
@@ -236,10 +256,14 @@ export default {
           vm.pagination = response.data.pagination;
           vm.products = response.data.products;
           vm.isLoading = false;
+        } else if (response.data.message === '驗證錯誤, 請重新登入') {
+          vm.$router.push('/login');
+          vm.isLoading = false;
         } else {
-          window.alert(`
-          出現錯誤惹，好糗Σ( ° △ °|||)︴
-          錯誤訊息：${response.data.message}`);
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
           vm.isLoading = false;
         }
       });
@@ -258,16 +282,35 @@ export default {
           vm.tempProducts.id
         }`;
       }
-      console.log(httpMethods, url);
+      vm.status.loadingItem = true;
       this.$http[httpMethods](url, { data: vm.tempProducts }).then((response) => {
         if (response.data.success) {
+          vm.status.loadingItem = false;
           $('#productsModal').modal('hide');
+          switch (httpMethods) {
+            case 'post':
+              this.$bus.$emit('message:push',
+                '資料新增成功(*ゝ∀･)v'
+                , 'success');
+              break;
+            case 'put':
+              this.$bus.$emit('message:push',
+                '資料更新成功(*ゝ∀･)v'
+                , 'success');
+              break;
+            default:
+              this.$bus.$emit('message:push',
+                '資料新增成功(*ゝ∀･)v'
+                , 'success');
+              break;
+          }
           vm.getProducts();
           vm.tempProducts = [];
         } else {
-          window.alert(`
-          出現錯誤惹，好糗Σ( ° △ °|||)︴
-          錯誤訊息：${response.data.message}`);
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
         }
       });
     },
@@ -287,7 +330,16 @@ export default {
       }).then((response) => {
         if (response.data.success) {
           vm.$set(vm.tempProducts, 'imageUrl', response.data.imageUrl);
+          this.$bus.$emit('message:push',
+            '圖片上傳成功(*ゝ∀･)v'
+            , 'success');
           vm.status.fileUploading = false;
+        } else {
+          vm.status.fileUploading = false;
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
         }
       });
     },
@@ -296,14 +348,21 @@ export default {
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/admin/product/${vm.tempProducts.id}`;
+      vm.status.loadingItem = true;
       this.$http.delete(url).then((response) => {
         if (response.data.success) {
+          vm.status.loadingItem = false;
           $('#deleteProductsModal').modal('hide');
+          this.$bus.$emit('message:push',
+            '資料刪除成功(*ゝ∀･)v'
+            , 'success');
           vm.getProducts();
         } else {
-          window.alert(`
-          出現錯誤惹，好糗Σ( ° △ °|||)︴
-          錯誤訊息：${response.data.message}`);
+          vm.status.loadingItem = false;
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
         }
       });
     },
@@ -332,6 +391,14 @@ export default {
           break;
       }
     },
+    tempRemove() {
+      $('#productsModal').on('hidden.bs.modal', () => {
+        this.tempProducts = {};
+      });
+      $('#deleteProductsModal').on('hidden.bs.modal', () => {
+        this.tempProducts = {};
+      });
+    },
   },
   components: {
     PaginationComponents,
@@ -339,8 +406,8 @@ export default {
   created() {
     this.getProducts();
   },
-};
-window.onload = () => {
-  this.isLoading = false;
+  mounted() {
+    this.tempRemove();
+  },
 };
 </script>

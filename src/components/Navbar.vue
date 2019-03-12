@@ -23,18 +23,18 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/">
-                首頁
+                <font-awesome-icon :icon="['fas', 'home']"/> 首頁
                 <span class="sr-only">(current)</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/product">
-                產品列表
+                <font-awesome-icon :icon="['fab', 'product-hunt']"/> 產品列表
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/login">
-                登入
+                <font-awesome-icon :icon="['fas', 'sign-in-alt']"/> 登入
               </router-link>
             </li>
           </ul>

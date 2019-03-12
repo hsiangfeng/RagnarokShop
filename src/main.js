@@ -19,11 +19,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import VueTypedJs from 'vue-typed-js';
 
+import VeeValidate, { Validator } from 'vee-validate';
+import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
+
 // 自訂
 import App from './App';
 import router from './router';
 import currencyFilter from './filter/currency';
 import timestampFilter from './filter/timestamp';
+import './bus';
 
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
@@ -34,6 +38,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueTypedJs);
 
 Vue.use(VueAxios, axios);
+
+Validator.localize('zh_TW', zhTWValidate);
+Vue.use(VeeValidate, {
+  locale: 'zh_TW',
+  events: 'input|blur',
+});
 
 Vue.component('Loading', Loading);
 

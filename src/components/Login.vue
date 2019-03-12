@@ -36,9 +36,13 @@
         required
         v-model="user.password"
       >
-      <button class="btn btn-lg btn-ro text-white" type="submit">登入</button>
+      <button class="btn btn-lg btn-ro text-white" type="submit">
+        <font-awesome-icon :icon="['fas', 'sign-in-alt']"/> 登入
+      </button>
       <router-link to="/">
-        <button class="btn btn-lg btn-ro text-white">返回</button>
+        <button class="btn btn-lg btn-ro text-white">
+          <font-awesome-icon :icon="['fas', 'undo-alt']"/> 返回
+        </button>
       </router-link>
       <p class="mt-5 mb-3 text-white">&copy; 2019</p>
     </form>
