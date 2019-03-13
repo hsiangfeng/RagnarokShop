@@ -5,6 +5,7 @@ import Index from '@/components/pages/Index';
 import Product from '@/components/Product';
 import HotProduct from '@/components/pages/HotProduct';
 import Login from '@/components/Login';
+import SignOut from '@/components/admin/SignOut';
 import Dashboard from '@/components/admin/Dashboard';
 import ProductsList from '@/components/admin/pages/ProductsList';
 import ProductsCard from '@/components/admin/pages/ProductsCard';
@@ -56,6 +57,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/sign_out',
+      name: 'SignOut',
+      component: SignOut,
     },
     {
       path: '/admin',
