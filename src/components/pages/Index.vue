@@ -1,7 +1,6 @@
 <template>
   <div>
     <Jumbotron/>
-    <Carousel/>
     <Secret/>
     <Esay/>
     <Other/>

@@ -20,7 +20,6 @@
       <div class="card" v-for="item in products" :key="item.id">
         <a :href="item.imageUrl" target="_black">
           <img class="card-img-top" :src="item.imageUrl" v-if="item.imageUrl">
-          <img class="card-img-top" :src="item.image" v-if="item.image">
         </a>
         <div class="card-body">
           <span class="badge badge-secondary float-right">{{item.category}}</span>

@@ -3,9 +3,8 @@ import Router from 'vue-router';
 import Layout from '@/components/Layout';
 import Index from '@/components/pages/Index';
 import Product from '@/components/Product';
-import HotProduct from '@/components/pages/HotProduct';
+import Products from '@/components/pages/Products';
 import Login from '@/components/Login';
-import SignOut from '@/components/admin/SignOut';
 import Dashboard from '@/components/admin/Dashboard';
 import ProductsList from '@/components/admin/pages/ProductsList';
 import ProductsCard from '@/components/admin/pages/ProductsCard';
@@ -48,8 +47,8 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'HotProduct',
-          component: HotProduct,
+          name: 'Products',
+          component: Products,
         },
       ],
     },
@@ -57,11 +56,6 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
-    },
-    {
-      path: '/sign_out',
-      name: 'SignOut',
-      component: SignOut,
     },
     {
       path: '/admin',

@@ -33,7 +33,9 @@ $grays: map-merge(
   ),
   $grays
 );
-$ro:      #9FB0CF !default;
+$ro:      #446da2 !default;
+$ro-light:#769bd3 !default;
+$ro-dark: #044273 !default;
 $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
@@ -50,6 +52,8 @@ $colors: () !default;
 $colors: map-merge(
   (
     "ro":         $ro,
+    "ro-light":   $ro-light,
+    "ro-dark":    $ro-dark,
     "blue":       $blue,
     "indigo":     $indigo,
     "purple":     $purple,
@@ -81,6 +85,8 @@ $theme-colors: () !default;
 $theme-colors: map-merge(
   (
     "ro":         $ro,
+    "ro-light":   $ro-light,
+    "ro-dark":    $ro-dark,
     "primary":    $primary,
     "secondary":  $secondary,
     "success":    $success,

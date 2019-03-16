@@ -35,10 +35,10 @@
           <td class="align-middle">{{item.num}}</td>
           <td>
             <a :href="item.imageUrl" target="_black" v-if="item.imageUrl">
-              <img :src="item.imageUrl" width="150px">
+              <img :src="item.imageUrl" width="100px">
             </a>
             <a :href="item.image" target="_black" v-if="item.image">
-              <img :src="item.image" width="150px">
+              <img :src="item.image" width="100px">
             </a>
           </td>
           <td class="align-middle">

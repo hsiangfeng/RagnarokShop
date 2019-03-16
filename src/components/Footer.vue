@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-ro mt-10">
+  <footer class="bg-ro-dark mt-10">
     <div class="container text-white py-5">
       <div class="row">
         <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -16,7 +16,7 @@
           </a>
         </div>
         <div class="col-md-4 d-flex justify-content-center align-items-center text-center">
-          <img src="@/assets/img/1181362684.gif"
+          <img src="@/assets/img/logo.png"
           alt srcset width="150px"
           class="img-fluid">
         </div>

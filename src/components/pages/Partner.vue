@@ -15,6 +15,6 @@
         <img src="@/assets/img/Partner/GRAVITY.gif" width="150px" class="img-fluid">
       </div>
     </div>
-    <div class="small text-center text-ro">以上通通沒有合作</div>
+    <div class="small text-center text-ro-dark">以上通通真的沒有合作</div>
   </div>
 </template>

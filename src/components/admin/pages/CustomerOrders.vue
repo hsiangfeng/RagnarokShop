@@ -12,10 +12,7 @@
     <div class="row mt-4">
       <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
         <div class="card border-0 shadow-sm">
-          <div style="height: 150px; background-size: cover; background-position: center"
-          :style="{backgroundImage : `url(${item.image})`}"
-            >
-          </div>
+          <img class="card-img-top" :src="item.imageUrl" v-if="item.imageUrl">
           <div class="card-body">
             <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
             <h5 class="card-title">
@@ -187,7 +184,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <img :src="cacheProducth.image" class="img-fluid" alt>
+            <img :src="cacheProducth.imageUrl" v-if="cacheProducth.imageUrl" class="img-fluid">
             <blockquote class="blockquote mt-3">
               <p class="mb-0">{{ cacheProducth.content }}</p>
               <footer class="blockquote-footer text-right">{{ cacheProducth.description }}</footer>
@@ -233,7 +230,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <img :src="cacheProducth.image" class="img-fluid" alt>
+            <div class="text-center">
+              <img :src="cacheProducth.imageUrl" v-if="cacheProducth.imageUrl" class="img-fluid">
+            </div>
             <blockquote class="blockquote mt-3">
               <p class="mb-0">{{ cacheProducth.content }}</p>
               <footer class="blockquote-footer text-right">{{ cacheProducth.description }}</footer>

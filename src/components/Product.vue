@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Navbar/>
     <div class="banner d-flex justify-content-center align-items-center">
       <div class="banner-text">
@@ -10,33 +10,9 @@
         </vue-typed-js>
       </div>
     </div>
-    <ul class="nav justify-content-center nav-tabs sticky-top">
-      <li class="nav-item">
-        <router-link class="nav-link" to="/ProductList">
-          <font-awesome-icon :icon="['fab','hotjar']"/>
-          推薦商品
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/ProductList">
-          <font-awesome-icon :icon="['fas','chess-king']"/>
-          MVP武器
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/ProductList">
-          <font-awesome-icon :icon="['fas','democrat']"/>
-          MVP防具
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/ProductList">
-          <font-awesome-icon :icon="['fas','shopping-bag']"/>
-          組合優惠
-        </router-link>
-      </li>
-    </ul>
-    <router-view/>
+    <div>
+      <router-view/>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -64,7 +40,8 @@ export default {
     background-image: url(../assets/img/Product/banner.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    padding-top: 60px;
+    height: 500px;
   }
   .banner-text {
     background-color: rgba(0, 0, 0, 0.45);

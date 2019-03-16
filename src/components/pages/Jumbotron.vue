@@ -13,7 +13,7 @@
       </vue-typed-js>
       <div class="banner">
         <img src="@/assets/img/poring.gif" class="img-fluid logo-poring" width="50px">
-        <img src="@/assets/img/1181362684.gif" class="img-fluid" width="500px">
+        <img src="@/assets/img/1181362684.png" class="img-fluid" width="500px">
         <img src="@/assets/img/UTMuP.gif"
         class="img-fluid logo-poring-end d-none d-md-block"
         width="180px">
