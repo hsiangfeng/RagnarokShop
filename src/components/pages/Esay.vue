@@ -10,7 +10,7 @@
               <p>透過買裝備、卡片只是一個開始，
                 但是購買後絕對讓你超乎想像的打怪更輕鬆更愉悅，
                 甚至隨便打都是傷害<span class="text-danger">999999</span>，
-                可是單純只有傷害可以嗎?我們還提供了優良隊友媒合，進而減少你解任務的時間。</p>
+                可是單純只有傷害可以嗎?我們還提供了優良隊友媒合，減少你解任務的時間。</p>
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">

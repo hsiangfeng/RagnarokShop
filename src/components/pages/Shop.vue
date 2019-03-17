@@ -12,20 +12,21 @@
     <div class="container my-10">
     <h2 class="text-ro">不要浪費時間快搶購</h2>
     <swiper :options="swiperOption" class="py-5">
-      <swiper-slide v-for="item in products" :key="item.id" class="border">
+      <swiper-slide v-for="item in mvpCard" :key="item.id" class="border">
         <div class="shop-top text-center">
             <div class="badge badge-danger category-top">{{item.category}}</div>
-            <img :src="item.imageUrl" width="150px">
+            <img :src="item.imageUrl" class="shop-img">
         </div>
         <div class="shop-content p-2">
           <h6>
             <a href="http://" class="text-ro">{{item.title}}</a>
           </h6>
-          <p class="text-left p-3">
+          <p class="text-left p-3 text-description">
             {{item.description}}
           </p>
           <div class="d-flex justify-content-between">
-            NT$ {{item.price}} <del><small>原價 NT$ {{item.origin_price}}</small></del>
+            <span class="text-ro-dark">NT$ {{item.price}}</span>
+            <del><small>原價 NT$ {{item.origin_price}}</small></del>
           </div>
         </div>
         <div class="shop-footer d-flex justify-content-center align-items-center">
@@ -61,20 +62,21 @@
     <div class="container my-10">
       <h2 class="text-ro">組合推薦</h2>
       <swiper :options="swiperOption" class="py-5">
-        <swiper-slide v-for="item in productsOff" :key="item.id" class="border">
+        <swiper-slide v-for="item in productsOff" :key="item.id" class="border p-2">
           <div class="shop-top text-center">
-              <div class="badge badge-ro category-top">{{item.category}}</div>
-              <img :src="item.imageUrl" width="150px">
+              <div class="badge badge-danger category-top">{{item.category}}</div>
+              <img :src="item.imageUrl" class="shop-img">
           </div>
-          <div class="shop-content p-2">
+          <div class="shop-content">
             <h6>
               <a href="http://" class="text-ro">{{item.title}}</a>
             </h6>
-            <p class="text-left p-3">
+            <p class="text-left p-3 text-description">
               {{item.description}}
             </p>
             <div class="d-flex justify-content-between">
-              NT$ {{item.price}} <del><small>原價 NT$ {{item.origin_price}}</small></del>
+              <span class="text-ro-dark">NT$ {{item.price}}</span>
+              <del><small>原價 NT$ {{item.origin_price}}</small></del>
             </div>
           </div>
           <div class="shop-footer d-flex justify-content-center align-items-center">
@@ -91,7 +93,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .shop-top{
   position: relative;
   .category-top{
@@ -102,6 +103,13 @@
 }
 .shop-content{
   height: 200px;
+  .text-description{
+    height: 120px;
+    overflow-y: auto;
+  }
+}
+.shop-img{
+  max-height: 250px;
 }
 </style>
 
@@ -114,6 +122,7 @@ export default {
     return {
       products: [],
       productsOff: [],
+      mvpCard: [],
       isLoading: false,
       swiperOption: {
         slidesPerView: 4,
@@ -129,14 +138,15 @@ export default {
     };
   },
   methods: {
-    getProducts(page = 1) {
+    getProducts() {
       const vm = this;
-      const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products?page=${page}`;
+      const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products/all`;
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.isLoading = false;
         vm.products = response.data.products;
         this.getProductsOff();
+        this.getMvpCard();
       });
     },
     getProductsOff() {
@@ -145,6 +155,18 @@ export default {
       data.forEach((item) => {
         if (item.category === '組合優惠') {
           vm.productsOff.push(item);
+        }
+      });
+    },
+    getMvpCard() {
+      console.log('1');
+      const vm = this;
+      const data = vm.products;
+      data.forEach((item) => {
+        console.log('2');
+        if (item.category === 'MVP卡片') {
+          console.log('3');
+          vm.mvpCard.push(item);
         }
       });
     },

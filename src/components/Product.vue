@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <Navbar/>
     <div class="banner d-flex justify-content-center align-items-center">
       <div class="banner-text">
@@ -14,6 +14,9 @@
       <router-view/>
     </div>
     <Footer/>
+    <audio loop muted webkit-playsinline="true" playsinline="true" id="roBGM">
+      <source src="@/assets/login@2.mp3" type="audio/mpeg">
+    </audio>
   </div>
 </template>
 
@@ -27,10 +30,22 @@ export default {
     return {
     };
   },
+  methods: {
+    autoPlayMusic() {
+      const roBGM = document.getElementById('roBGM');
+      if (roBGM.paused) {
+        roBGM.play();
+        roBGM.volume = 0.2;
+      }
+    },
+  },
   components: {
     Navbar,
     Footer,
     BGM,
+  },
+  mounted() {
+    this.autoPlayMusic();
   },
 };
 </script>

@@ -5,19 +5,19 @@
         <div class="collapse navbar-collapse d-md-none" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link class="nav-link font-weight-bold p-5" to="/">
+              <router-link class="nav-link font-weight-bold p-5" to="/index">
                 <font-awesome-icon :icon="['fas', 'home']"/> 首頁
                 <span class="sr-only">(current)</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/product">
-                <font-awesome-icon :icon="['fab', 'product-hunt']"/> 產品列表
+                <font-awesome-icon :icon="['fab', 'product-hunt']"/> 全部商品
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/login">
-                <font-awesome-icon :icon="['fas', 'sign-in-alt']"/> 登入
+                <font-awesome-icon :icon="['fab', 'hotjar']"/> 熱門商品
               </router-link>
             </li>
           </ul>
@@ -41,13 +41,13 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <router-link class="nav-link font-weight-bold p-5" to="/">
-                <font-awesome-icon :icon="['fas', 'home']"/> 首頁
+                <font-awesome-icon :icon="['fas', 'box-open']"/> 組合優惠
                 <span class="sr-only">(current)</span>
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link font-weight-bold p-5" to="/product">
-                <font-awesome-icon :icon="['fab', 'product-hunt']"/> 產品列表
+              <router-link class="nav-link font-weight-bold p-5" to="/login">
+                <font-awesome-icon :icon="['fas', 'user-tie']"/> 關於作者
               </router-link>
             </li>
             <li class="nav-item">
@@ -62,17 +62,8 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-  .navbar{
-    padding: 0;
-  }
-  .nav-link{
-    transition: all 0.5s;
-  }
-  .nav-link.active{
-    border-bottom: 2px solid #fff;
-  }
-  .nav-link:hover{
-    border-bottom: 2px solid #fff;
-  }
+<style lang="scss">
+  .fixed-top{
+  z-index: 998 !important;
+}
 </style>

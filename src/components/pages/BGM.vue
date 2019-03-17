@@ -1,7 +1,7 @@
 <template>
   <div>
     <audio loop muted webkit-playsinline="true" playsinline="true" id="roBGM">
-      <source src="@/assets/robgm.mp3" type="audio/mpeg">
+      <source src="@/assets/08.mp3" type="audio/mpeg">
     </audio>
     <div class="play-bgm">
       <a href="#">
@@ -15,7 +15,7 @@
         data-trigger="hover"
         data-placement="top"
         data-content="停止播放BGM"
-        @click.prevent="stopBGM"
+        @click.prevent="musicStatus"
         v-if="bgmStatus"/>
         <font-awesome-icon
         :icon="['fas','play-circle']"
@@ -27,7 +27,7 @@
         data-trigger="hover"
         data-placement="top"
         data-content="播放BGM"
-        @click.prevent="playBGM"
+        @click.prevent="musicStatus"
         v-else/>
       </a>
     </div>
@@ -48,21 +48,21 @@ export default {
       const vm = this;
       const BGM = document.getElementById('roBGM');
       if (BGM.paused) {
-        vm.bgmStatus = false;
-      } else {
         vm.bgmStatus = true;
+        BGM.play();
       }
       BGM.volume = 0.2;
     },
-    stopBGM() {
-      const BGM = document.getElementById('roBGM');
-      BGM.pause();
-      this.bgmStatus = false;
-    },
-    playBGM() {
-      const BGM = document.getElementById('roBGM');
-      BGM.play();
-      this.bgmStatus = true;
+    musicStatus() {
+      const vm = this;
+      const roBGM = document.getElementById('roBGM');
+      if (roBGM.paused) {
+        vm.bgmStatus = true;
+        roBGM.play();
+      } else {
+        vm.bgmStatus = false;
+        roBGM.pause();
+      }
     },
   },
   mounted() {

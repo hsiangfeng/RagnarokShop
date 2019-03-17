@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="container">
     <loading :active.sync="isLoading"
     :opacity="1">
       <img src="@/assets/loading.gif" alt="" srcset="">
@@ -71,7 +71,7 @@
                 <a href="http://" class="text-ro">{{item.title}}</a>
               </h6>
               <div>
-                <div class="description">
+                <div class="description text-truncate">
                   {{item.description}}
                 </div>
                 {{item.content}}
@@ -88,7 +88,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -138,7 +138,6 @@
     padding: 0;
     }
   }
-  
   .products-item {
     display: flex;
     box-shadow: 0 1px 5px #000;
@@ -192,7 +191,8 @@ export default {
   methods: {
     getProducts() {
       const vm = this;
-      const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products?all`;
+      const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products/all`;
+      console.log(url);
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.products = response.data.products;
