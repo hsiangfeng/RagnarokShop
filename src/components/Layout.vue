@@ -1,14 +1,14 @@
 <template lang="pug">
   div
-    navbar
-      router-view
-        footer
-          audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-            source(src='@/assets/08.mp3', type='audio/mpeg')
-          .play-bgm
-            a(href='#')
-              font-awesome-icon#stopBGM.text-primary(:icon="['fas','sync']", spin='', size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='停止播放BGM', @click.prevent='musicStatus', v-if='bgmStatus')
-              font-awesome-icon#playBGM.text-primary(:icon="['fas','play-circle']", size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='播放BGM', @click.prevent='musicStatus', v-else='')
+    Navbar
+    router-view
+    Footer
+    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
+      source(src='@/assets/08.mp3', type='audio/mpeg')
+    .play-bgm
+      a(href='#')
+        font-awesome-icon#stopBGM.text-primary(:icon="['fas','sync']", spin='', size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='停止播放BGM', @click.prevent='musicStatus', v-if='bgmStatus')
+        font-awesome-icon#playBGM.text-primary(:icon="['fas','play-circle']", size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='播放BGM', @click.prevent='musicStatus', v-else='')
 </template>
 
 <style lang="scss">

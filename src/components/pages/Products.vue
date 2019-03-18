@@ -13,8 +13,7 @@
       .category-list
         ul.list-items
           li
-            a.items(href='#',
-            @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
+            a.items(href='#', @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
               img.items-img(src='@/assets/img/yJFR7SP.gif')
               div 全部商品
           li

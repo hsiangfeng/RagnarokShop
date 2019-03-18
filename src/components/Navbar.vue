@@ -11,16 +11,16 @@
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(:to="{name: 'Index'}")
                 font-awesome-icon(:icon="['fas', 'home']")
-                  | 首頁
-                  span.sr-only (current)
+                | 首頁
+                span.sr-only (current)
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(:to="{name: 'Products', params:{data: '全部商品'}}")
                 font-awesome-icon(:icon="['fab', 'product-hunt']")
-                  | 全部商品
+                | 全部商品
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(:to="{name: 'Products', params:{data: '熱門商品'}}")
                 font-awesome-icon(:icon="['fab', 'hotjar']")
-                  | 關於仙境
+                | 關於仙境
         a.navbar-brand.d-none.d-lg-block(href='#')
           img.img-fluid(src='@/assets/img/logo.png', alt='', srcset='', width='100px')
         #navbarSupportedContent.collapse.navbar-collapse
@@ -28,16 +28,16 @@
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(to='/')
                 font-awesome-icon(:icon="['fas', 'box-open']")
-                  | 遊戲指南
-                  span.sr-only (current)
+                | 遊戲指南
+                span.sr-only (current)
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(to='/login')
                 font-awesome-icon(:icon="['fas', 'user-tie']")
-                  | 關於作者
+                | 關於作者
             li.nav-item
               router-link.nav-link.font-weight-bold.p-5(to='/login')
                 font-awesome-icon(:icon="['fas', 'sign-in-alt']")
-                  | 登入
+                | 登入
 </template>
 
 <style lang="scss">

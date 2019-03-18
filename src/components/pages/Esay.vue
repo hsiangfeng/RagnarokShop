@@ -12,8 +12,7 @@
                 | 但是購買後絕對讓你超乎想像的打怪更輕鬆更愉悅，
                 | 甚至隨便打都是傷害
                 span.text-danger 999999
-                | ，
-                |                 可是單純只有傷害可以嗎?我們還提供了優良隊友媒合，減少你解任務的時間。
+                |，可是單純只有傷害可以嗎?我們還提供了優良隊友媒合，減少你解任務的時間。
           .col-md-6.d-flex.justify-content-center.align-items-center
             img.img-fluid(src='@/assets/img/Esay/card_10.jpg', width='450px')
       .col-md-12
@@ -26,9 +25,7 @@
                 | 時常有些任務必須多人組隊才可以執行，
                 | 透過RagnarokShop所媒合的隊友，可以讓你隨時隨地立即性找尋隊友，
                 span.text-ro-dark.font-weight-bold
-                  | 其中也會提供隊友評價指數，
-                  | 確保您不遇到雷雷好朋友導致玩到爆氣
-                | 。
+                  | 其中也會提供隊友評價指數，確保您不遇到雷雷好朋友導致玩到爆氣。
           .col-md-6.d-flex.justify-content-center.align-items-center
             img.img-fluid(src='@/assets/img/Esay/img_localize.png', width='450px')
       .col-md-12
@@ -42,9 +39,7 @@
                 | 若沒有一定配裝技巧不管有多好的裝備都是徒勞，
                 | 所以我們
                 span.text-ro-dark.font-weight-bold
-                  | 提供了最佳打法以及最佳配裝，
-                  | 這是一般寶物購買網所無法提供的
-                | 。
+                  | 提供了最佳打法以及最佳配裝，這是一般寶物購買網所無法提供的。
           .col-md-6.d-flex.justify-content-center.align-items-center
             img.img-fluid(src='@/assets/img/Esay/with.jpg', width='450px')
       .col-md-12
@@ -56,8 +51,7 @@
                 | 有些任務的時間實在過長，
                 | RagnarokShop透過線上許多人分享的評價最高攻略影音，
                 span.text-ro-dark.font-weight-bold
-                  | 提供一個最快速、最簡易的攻略影音教學，以達到快速破關
-                | 。
+                  | 提供一個最快速、最簡易的攻略影音教學，以達到快速破關。
           .col-md-6.d-flex.justify-content-center.align-items-center
             img.img-fluid(src='@/assets/img/Esay/youtube.png', width='450px')
 </template>

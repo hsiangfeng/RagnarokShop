@@ -1,15 +1,15 @@
 <template lang="pug">
   div
     navbar
-      .banner.d-flex.justify-content-center.align-items-center
-        .banner-text
-          vue-typed-js(:strings="['公~我回來了~']", :fadeout='true')
-            h3.text-white.typing
-      div
-        router-view
-      footer
-        audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-          source(src='@/assets/login@2.mp3', type='audio/mpeg')
+    .banner.d-flex.justify-content-center.align-items-center
+      .banner-text
+        vue-typed-js(:strings="['公~我回來了~']", :fadeout='true')
+          h3.text-white.typing
+    div
+      router-view
+    footer
+      audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
+        source(src='@/assets/login@2.mp3', type='audio/mpeg')
 </template>
 
 <script>

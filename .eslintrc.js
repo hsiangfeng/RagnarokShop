@@ -49,5 +49,6 @@ module.exports = {
     "no-console": 0,
     "no-alert": 0, // alert提示
     'max-len': 0,
+    "linebreak-style": 0,
   },
 }
