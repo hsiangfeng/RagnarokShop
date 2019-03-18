@@ -17,12 +17,14 @@ Vue.use(Router);
 
 export default new Router({
   linkActiveClass: 'active',
-  // scrollBehavior(to, from, savedPosition) {
-  //   return {
-  //     x: 0,
-  //     y: 0,
-  //   };
-  // },
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    // eslint-disable-next-line no-else-return
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   routes: [
     {
       path: '*',
@@ -35,7 +37,7 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'Main',
+          name: 'Index',
           component: Index,
         },
       ],

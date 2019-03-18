@@ -1,12 +1,11 @@
-<template>
-  <div>
-    <Jumbotron/>
-    <Secret/>
-    <Esay/>
-    <Other/>
-    <Shop/>
-    <Partner/>
-  </div>
+<template lang="pug">
+  div
+    Jumbotron
+    Secret
+    Esay
+    Other
+    Shop
+    Partner
 </template>
 
 <script>

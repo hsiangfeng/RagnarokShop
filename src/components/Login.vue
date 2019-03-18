@@ -1,47 +1,24 @@
-<template>
-  <div class="login-section d-flex justify-content-center align-items-center flex-column">
-    <loading :active.sync="isLoading"
-    :opacity="1">
-      <img src="@/assets/loading.gif" alt="" srcset="">
-      <vue-typed-js :strings="['波利加載中…']"
-      class="justify-content-center align-items-center">
-        <small class="font-weight-normal typing">
-        </small>
-      </vue-typed-js>
-    </loading>
-    <div class="login-logo" id="login-logo">
-    </div>
-    <div class="login-bg" id="login-bg">
-      <div class="login-top" id="login-top"></div>
-      <form @submit.prevent="signin">
-        <input
-        type="email"
-        id="email"
-        required
-        autofocus
-        v-model="user.username">
-        <input
-        type="password"
-        id="password"
-        required
-        v-model="user.password">
-        <button class="btn-play" id="musicPlay" type="button" @click="musicStatus()">
-          stop
-        </button>
-        <button class="btn-login" type="submit">
-          登入
-        </button>
-        <router-link to="/">
-          <button class="btn-end">
-            結束
-          </button>
-        </router-link>
-      </form>
-    </div>
-    <audio loop muted webkit-playsinline="true" playsinline="true" id="roBGM">
-      <source src="@/assets/01.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+<template lang="pug">
+  .login-section.d-flex.justify-content-center.align-items-center.flex-column
+    loading(:active.sync='isLoading', :opacity='1')
+      img(src='@/assets/loading.gif', alt='', srcset='')
+      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
+        small.font-weight-normal.typing
+    #login-logo.login-logo
+    #login-bg.login-bg
+      #login-top.login-top
+      form(@submit.prevent='signin')
+        input#email(type='email', required='', autofocus='', v-model='user.username')
+        input#password(type='password', required='', v-model='user.password')
+        button#musicPlay.btn-play(type='button', @click='musicStatus()')
+          | stop
+        button.btn-login(type='submit')
+          | 登入
+        router-link(to='/')
+          button.btn-end
+            | 結束
+    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
+      source(src='@/assets/01.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>

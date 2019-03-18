@@ -1,9 +1,8 @@
-<template>
-  <div>
-    <Navbar/>
-    <Alert/>
-    <router-view/>
-  </div>
+<template lang="pug">
+  div
+    navbar
+      alert
+        router-view
 </template>
 
 <script>

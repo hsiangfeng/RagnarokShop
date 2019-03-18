@@ -1,27 +1,13 @@
-<template>
-  <div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item"
-        :class="{'disabled': !paginationService.has_pre}">
-          <a class="page-link" href="#"
-          @click.prevent="getPagesService(paginationService.current_page - 1)"
-          tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"
-        v-for="pages in paginationService.total_pages"
-        :key="pages"
-        :class="{'active': paginationService.current_page === pages}">
-          <a class="page-link" href="#" @click.prevent="getPagesService(pages)">{{ pages }}</a>
-        </li>
-        <li class="page-item"
-        :class="{'disabled': !paginationService.has_next}">
-          <a class="page-link" href="#"
-          @click.prevent="getPagesService(paginationService.current_page + 1)">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<template lang="pug">
+  div
+    nav(aria-label='Page navigation example')
+      ul.pagination.justify-content-center
+        li.page-item(:class="{'disabled': !paginationService.has_pre}")
+          a.page-link(href='#', @click.prevent='getPagesService(paginationService.current_page - 1)', tabindex='-1') Previous
+        li.page-item(v-for='pages in paginationService.total_pages', :key='pages', :class="{'active': paginationService.current_page === pages}")
+          a.page-link(href='#', @click.prevent='getPagesService(pages)') {{ pages }}
+        li.page-item(:class="{'disabled': !paginationService.has_next}")
+          a.page-link(href='#', @click.prevent='getPagesService(paginationService.current_page + 1)') Next
 </template>
 
 <script>

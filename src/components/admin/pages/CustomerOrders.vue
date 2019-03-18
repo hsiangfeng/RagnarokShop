@@ -1,274 +1,137 @@
-<template>
-  <div class="container">
-    <loading :active.sync="isLoading"
-    :opacity="1">
-      <img src="@/assets/loading.gif" alt="" srcset="">
-      <vue-typed-js :strings="['波利加載中…']"
-      class="justify-content-center align-items-center">
-        <small class="font-weight-normal typing">
-        </small>
-      </vue-typed-js>
-    </loading>
-    <div class="row mt-4">
-      <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
-        <div class="card border-0 shadow-sm">
-          <img class="card-img-top" :src="item.imageUrl" v-if="item.imageUrl">
-          <div class="card-body">
-            <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
-            <h5 class="card-title">
-              <a href="#" class="text-dark">{{item.title}}</a>
-            </h5>
-            <p class="card-text">{{ item.content }}</p>
-            <div class="d-flex justify-content-between align-items-baseline">
-              <del class="h6">原價 {{ item.origin_price }} 元</del>
-              <div class="h5">現在只要 {{ item.price }} 元</div>
-            </div>
-          </div>
-          <div class="card-footer d-flex">
-            <button type="button"
-            class="btn btn-outline-secondary btn-sm"
-            @click="getOneProduct(item.id)">
-              <font-awesome-icon :icon="['fas','spinner']"
-              spin
-              v-if="status.loadingItem === item.id"/>
-              查看更多
-            </button>
-            <button type="button"
-            class="btn btn-outline-danger btn-sm ml-auto"
-            @click="addtoCart(item.id)"
-            v-on:keyup.enter="addtoCart(item.id)">
-              <font-awesome-icon :icon="['fas','spinner']" spin
-              v-if="status.loadingItem === item.id"/>
-              加到購物車
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="my-5 row justify-content-center">
-      <div class="col-md-6">
-        <table class="table">
-          <thead>
-            <th></th>
-            <th>品名</th>
-            <th>數量</th>
-            <th>單價</th>
-          </thead>
-          <tbody>
-            <tr v-for="item in carts.carts" :key="item.id">
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="removeCart(item.id)"
-                >
-                  <font-awesome-icon :icon="['fas','spinner']" spin
-                  v-if="status.loadingItem === item.id"/>
-                  <font-awesome-icon :icon="['far','trash-alt']"
-                  v-if="status.loadingItem !== item.id"/>
-                </button>
-              </td>
-              <td class="align-middle">
-                {{ item.product.title }}
-                <div class="text-success" v-if="item.coupon">已套用優惠券</div>
-              </td>
-              <td class="align-middle">{{ item.qty }}</td>
-              <td class="align-middle text-right">{{ item.final_total | currency}}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="text-right">總計</td>
-              <td class="text-right">{{ carts.total | currency}}</td>
-            </tr>
-            <tr v-if="carts.final_total !== carts.total">
-              <td colspan="3" class="text-right text-success">折扣價</td>
-              <td class="text-right text-success">{{ carts.final_total | currency}}</td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="input-group mb-3 input-group-sm">
-          <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" @click="userCoupon()">
-              套用優惠碼
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="createOrder()">
-        <div class="form-group">
-          <label for="useremail">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="useremail"
-            v-validate="'required|email'"
-            :class="{'is-invalid': errors.has('email')}"
-            v-model="form.user.email"
-            placeholder="請輸入 Email"
-          >
-          <span class="text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</span>
-        </div>
-        <div class="form-group">
-          <label for="username">收件人姓名</label>
-          <input
-            type="text"
-            class="form-control"
-            name="name"
-            id="username"
-            :class="{'is-invalid': errors.has('name')}"
-            v-model="form.user.name"
-            v-validate="'required'"
-            placeholder="輸入姓名"
-          >
-          <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
-        </div>
-        <div class="form-group">
-          <label for="usertel">收件人電話</label>
-          <input
-            type="tel"
-            class="form-control"
-            id="usertel"
-            name="tel"
-            :class="{'is-invalid': errors.has('tel')}"
-            v-model="form.user.tel"
-            v-validate="'required'"
-            placeholder="請輸入電話"
-          >
-          <span class="text-danger" v-if="errors.has('tel')">電話必須輸入</span>
-        </div>
-        <div class="form-group">
-          <label for="useraddress">收件人地址</label>
-          <input
-            type="address"
-            class="form-control"
-            name="address"
-            :class="{'is-invalid': errors.has('address')}"
-            id="useraddress"
-            v-model="form.user.address"
-            v-validate="'required'"
-            placeholder="請輸入地址"
-          >
-          <span class="text-danger" v-if="errors.has('address')">地址欄位不得留空</span>
-        </div>
-
-        <div class="form-group">
-          <label for="useraddress">留言</label>
-          <textarea name id class="form-control"
-          cols="30"
-          rows="10"
-          v-model="form.message"></textarea>
-        </div>
-        <div class="text-right">
-          <button class="btn btn-danger">送出訂單</button>
-        </div>
-      </form>
-    </div>
-    <div
-      class="modal fade"
-      id="productsModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ cacheProducth.title }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <img :src="cacheProducth.imageUrl" v-if="cacheProducth.imageUrl" class="img-fluid">
-            <blockquote class="blockquote mt-3">
-              <p class="mb-0">{{ cacheProducth.content }}</p>
-              <footer class="blockquote-footer text-right">{{ cacheProducth.description }}</footer>
-            </blockquote>
-            <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!cacheProducth.price">{{ cacheProducth.origin_price }} 元</div>
-              <del class="h6" v-if="cacheProducth.price">原價 {{ cacheProducth.origin_price }} 元</del>
-              <div class="h4" v-if="cacheProducth.price">現在只要 {{ cacheProducth.price }} 元</div>
-            </div>
-            <select name class="form-control mt-3" v-model="cacheProducth.num">
-              <option :value="num" v-for="num in 10" :key="num">
-                選購 {{num}} {{cacheProducth.unit}}
-              </option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <div class="text-muted text-nowrap mr-3">
-              小計
-              <strong>{{ cacheProducth.num * cacheProducth.price }}</strong> 元
-            </div>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="addtoCart(cacheProducth.id, cacheProducth.num)"
-            >加到購物車</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="productModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ cacheProducth.title }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <img :src="cacheProducth.imageUrl" v-if="cacheProducth.imageUrl" class="img-fluid">
-            </div>
-            <blockquote class="blockquote mt-3">
-              <p class="mb-0">{{ cacheProducth.content }}</p>
-              <footer class="blockquote-footer text-right">{{ cacheProducth.description }}</footer>
-            </blockquote>
-            <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!cacheProducth.price">
-                {{ cacheProducth.origin_price }} 元
-              </div>
-              <del class="h6" v-if="cacheProducth.price">
-                原價 {{ cacheProducth.origin_price }} 元
-              </del>
-              <div class="h4" v-if="cacheProducth.price">
-                現在只要 {{ cacheProducth.price }} 元
-              </div>
-            </div>
-            <select name class="form-control mt-3" v-model="cacheProducth.num">
-              <option :value="num" v-for="num in 10" :key="num">
-                選購 {{num}} {{cacheProducth.unit}}
-              </option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <div class="text-muted text-nowrap mr-3">
-              小計
-              <strong>{{ cacheProducth.num * cacheProducth.price }}</strong> 元
-            </div>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="addtoCart(cacheProducth.id, cacheProducth.num)"
-            >加到購物車</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .container
+    loading(:active.sync='isLoading', :opacity='1')
+      img(src='@/assets/loading.gif', alt='', srcset='')
+      vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
+        small.font-weight-normal.typing
+    .row.mt-4
+      .col-md-4.mb-4(v-for='item in products', :key='item.id')
+        .card.border-0.shadow-sm
+          img.card-img-top(:src='item.imageUrl', v-if='item.imageUrl')
+          .card-body
+            span.badge.badge-secondary.float-right.ml-2 {{item.category}}
+            h5.card-title
+              a.text-dark(href='#') {{item.title}}
+            p.card-text {{ item.content }}
+            .d-flex.justify-content-between.align-items-baseline
+              del.h6 原價 {{ item.origin_price }} 元
+              .h5 現在只要 {{ item.price }} 元
+          .card-footer.d-flex
+            button.btn.btn-outline-secondary.btn-sm(type='button', @click='getOneProduct(item.id)')
+              font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
+                | 查看更多
+            button.btn.btn-outline-danger.btn-sm.ml-auto(type='button', @click='addtoCart(item.id)', v-on:keyup.enter='addtoCart(item.id)')
+              font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
+                | 加到購物車
+    .my-5.row.justify-content-center
+      .col-md-6
+        table.table
+          thead
+            tr
+              th
+              th 品名
+              th 數量
+              th 單價
+          tbody
+            tr(v-for='item in carts.carts', :key='item.id')
+              td.align-middle
+                button.btn.btn-outline-danger.btn-sm(type='button', @click='removeCart(item.id)')
+                  font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
+                    font-awesome-icon(:icon="['far','trash-alt']", v-if='status.loadingItem !== item.id')
+              td.align-middle
+                | {{ item.product.title }}
+                .text-success(v-if='item.coupon') 已套用優惠券
+              td.align-middle {{ item.qty }}
+              td.align-middle.text-right {{ item.final_total | currency}}
+          tfoot
+            tr
+              td.text-right(colspan='3') 總計
+              td.text-right {{ carts.total | currency}}
+            tr(v-if='carts.final_total !== carts.total')
+              td.text-right.text-success(colspan='3') 折扣價
+              td.text-right.text-success {{ carts.final_total | currency}}
+        .input-group.mb-3.input-group-sm
+          input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
+          .input-group-append
+            button.btn.btn-outline-secondary(type='button', @click='userCoupon()')
+              | 套用優惠碼
+    .my-5.row.justify-content-center
+      form.col-md-6(@submit.prevent='createOrder()')
+        .form-group
+          label(for='useremail') Email
+          input#useremail.form-control(type='email', name='email', v-validate="'required|email'", :class="{'is-invalid': errors.has('email')}", v-model='form.user.email', placeholder='請輸入 Email')
+          span.text-danger(v-if="errors.has('email')") {{ errors.first('email') }}
+        .form-group
+          label(for='username') 收件人姓名
+          input#username.form-control(type='text', name='name', :class="{'is-invalid': errors.has('name')}", v-model='form.user.name', v-validate="'required'", placeholder='輸入姓名')
+          span.text-danger(v-if="errors.has('name')") 姓名必須輸入
+        .form-group
+          label(for='usertel') 收件人電話
+          input#usertel.form-control(type='tel', name='tel', :class="{'is-invalid': errors.has('tel')}", v-model='form.user.tel', v-validate="'required'", placeholder='請輸入電話')
+          span.text-danger(v-if="errors.has('tel')") 電話必須輸入
+        .form-group
+          label(for='useraddress') 收件人地址
+          input#useraddress.form-control(type='address', name='address', :class="{'is-invalid': errors.has('address')}", v-model='form.user.address', v-validate="'required'", placeholder='請輸入地址')
+          span.text-danger(v-if="errors.has('address')") 地址欄位不得留空
+        .form-group
+          label(for='useraddress') 留言
+          textarea.form-control(name='', id='', cols='30', rows='10', v-model='form.message')
+        .text-right
+          button.btn.btn-danger 送出訂單
+    #productsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title {{ cacheProducth.title }}
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            img.img-fluid(:src='cacheProducth.imageUrl', v-if='cacheProducth.imageUrl')
+            blockquote.blockquote.mt-3
+              p.mb-0 {{ cacheProducth.content }}
+              footer.blockquote-footer.text-right {{ cacheProducth.description }}
+            .d-flex.justify-content-between.align-items-baseline
+              .h4(v-if='!cacheProducth.price') {{ cacheProducth.origin_price }} 元
+              del.h6(v-if='cacheProducth.price') 原價 {{ cacheProducth.origin_price }} 元
+              .h4(v-if='cacheProducth.price') 現在只要 {{ cacheProducth.price }} 元
+            select.form-control.mt-3(name='', v-model='cacheProducth.num')
+              option(:value='num', v-for='num in 10', :key='num')
+                | 選購 {{num}} {{cacheProducth.unit}}
+          .modal-footer
+            .text-muted.text-nowrap.mr-3
+              | 小計
+              strong {{ cacheProducth.num * cacheProducth.price }}
+              |  元
+            button.btn.btn-primary(type='button', @click='addtoCart(cacheProducth.id, cacheProducth.num)') 加到購物車
+    #productModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title {{ cacheProducth.title }}
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .text-center
+              img.img-fluid(:src='cacheProducth.imageUrl', v-if='cacheProducth.imageUrl')
+            blockquote.blockquote.mt-3
+              p.mb-0 {{ cacheProducth.content }}
+              footer.blockquote-footer.text-right {{ cacheProducth.description }}
+            .d-flex.justify-content-between.align-items-baseline
+              .h4(v-if='!cacheProducth.price')
+                | {{ cacheProducth.origin_price }} 元
+              del.h6(v-if='cacheProducth.price')
+                | 原價 {{ cacheProducth.origin_price }} 元
+              .h4(v-if='cacheProducth.price')
+                | 現在只要 {{ cacheProducth.price }} 元
+            select.form-control.mt-3(name='', v-model='cacheProducth.num')
+              option(:value='num', v-for='num in 10', :key='num')
+                | 選購 {{num}} {{cacheProducth.unit}}
+          .modal-footer
+            .text-muted.text-nowrap.mr-3
+              | 小計
+              strong {{ cacheProducth.num * cacheProducth.price }}
+              |  元
+            button.btn.btn-primary(type='button', @click='addtoCart(cacheProducth.id, cacheProducth.num)') 加到購物車
 </template>
 
 <script>

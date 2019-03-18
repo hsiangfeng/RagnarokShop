@@ -1,29 +1,20 @@
-<template>
-  <div>
-    <Navbar/>
-    <div class="banner d-flex justify-content-center align-items-center">
-      <div class="banner-text">
-        <vue-typed-js :strings="['公~我回來了，你呢?']"
-        :fadeOut="true">
-          <h1 class="text-white typing">
-          </h1>
-        </vue-typed-js>
-      </div>
-    </div>
-    <div>
-      <router-view/>
-    </div>
-    <Footer/>
-    <audio loop muted webkit-playsinline="true" playsinline="true" id="roBGM">
-      <source src="@/assets/login@2.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+<template lang="pug">
+  div
+    navbar
+      .banner.d-flex.justify-content-center.align-items-center
+        .banner-text
+          vue-typed-js(:strings="['公~我回來了~']", :fadeout='true')
+            h3.text-white.typing
+      div
+        router-view
+      footer
+        audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
+          source(src='@/assets/login@2.mp3', type='audio/mpeg')
 </template>
 
 <script>
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BGM from '@/components/pages/BGM';
 
 export default {
   data() {
@@ -42,7 +33,6 @@ export default {
   components: {
     Navbar,
     Footer,
-    BGM,
   },
   mounted() {
     this.autoPlayMusic();
