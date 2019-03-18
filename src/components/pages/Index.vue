@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template lang="pug">
   div
     Jumbotron
@@ -6,6 +7,18 @@
     Other
     Shop
     Partner
+=======
+<template>
+  <div>
+    <Jumbotron/>
+    <Carousel/>
+    <Secret/>
+    <Esay/>
+    <Other/>
+    <Shop/>
+    <Partner/>
+  </div>
+>>>>>>> parent of b53abf2... 後檯登入頁面調整
 </template>
 
 <script>

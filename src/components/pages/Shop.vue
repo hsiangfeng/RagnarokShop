@@ -69,91 +69,171 @@
 =======
 <template>
   <section>
-    <loading :active.sync="isLoading"
-    :opacity="1">
-      <img src="@/assets/loading.gif" alt="" srcset="">
-      <vue-typed-js :strings="['波利加載中…']"
-      class="justify-content-center align-items-center">
-        <small class="font-weight-normal typing">
-        </small>
-      </vue-typed-js>
-    </loading>
     <div class="container my-10">
-    <h2 class="text-ro">不要浪費時間快搶購</h2>
-    <swiper :options="swiperOption" class="py-5">
-      <swiper-slide v-for="item in products" :key="item.id" class="border">
-        <div class="shop-top text-center">
-            <div class="badge badge-danger category-top">{{item.category}}</div>
-            <img :src="item.imageUrl" width="150px">
-        </div>
-        <div class="shop-content p-2">
-          <h6>
-            <a href="http://" class="text-ro">{{item.title}}</a>
-          </h6>
-          <p class="text-left p-3">
-            {{item.description}}
-          </p>
-          <div class="d-flex justify-content-between">
-            NT$ {{item.price}} <del><small>原價 NT$ {{item.origin_price}}</small></del>
+    <h2 class="text-center text-ro">不要浪費時間快搶購</h2>
+      <ul class="list-items d-flex justify-content-center align-items-center">
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
+            </div>
           </div>
-        </div>
-        <div class="shop-footer d-flex justify-content-center align-items-center">
-          <a href="#" class="btn btn-outline-ro w-50">詳情了解</a>
-          <a href="#" class="btn btn-outline-ro w-50">手刀搶購</a>
-        </div>
-      </swiper-slide>
-    </swiper>
+        </li>
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
+            </div>
+          </div>
+        </li>
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="text-center">
+        <a href="#" class="btn btn-ro text-white">看更多組合包</a>
+      </div>
     </div>
-    <div class="bg-ro-light d-flex justify-content-center
+    <div class="bg-ro d-flex justify-content-center
     align-items-center flex-column
     py-5 text-white font-weight-bold h4">
       <div>
-        購買數上
-        <span class="text-ro-dark">千</span> 人
+        購買數
+        <span class="text-primary">50,000</span> 人
       </div>
       <div>
-        <div class="shop-good">
-          好評超過
-          <span class="text-ro-dark">上萬</span> 則
-        </div>
+        評論超過
+        <span class="text-primary">10,000</span> 則
       </div>
-      <div>
-        被採訪次數高達
-        <span class="text-ro-dark">∞</span> 次
-      </div>
-      <p class="text-center">
-        創造屬於自己的遊戲人生，不在上班時間&遊戲時間兩頭燒。
-        <br>
-        如果你還是覺得<span class="text-ro-dark">太貴</span>？沒關係，你還可以看看其他方案！
-      </p>
+      <div>覺得單買太貴？沒關係這裡有組合包！</div>
     </div>
     <div class="container my-10">
-      <h2 class="text-ro">組合推薦</h2>
-      <swiper :options="swiperOption" class="py-5">
-        <swiper-slide v-for="item in productsOff" :key="item.id" class="border">
-          <div class="shop-top text-center">
-              <div class="badge badge-ro category-top">{{item.category}}</div>
-              <img :src="item.imageUrl" width="150px">
-          </div>
-          <div class="shop-content p-2">
-            <h6>
-              <a href="http://" class="text-ro">{{item.title}}</a>
-            </h6>
-            <p class="text-left p-3">
-              {{item.description}}
-            </p>
-            <div class="d-flex justify-content-between">
-              NT$ {{item.price}} <del><small>原價 NT$ {{item.origin_price}}</small></del>
+      <h2 class="text-center text-ro">組合推薦</h2>
+      <ul class="list-items">
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
             </div>
           </div>
-          <div class="shop-footer d-flex justify-content-center align-items-center">
-            <a href="#" class="btn btn-outline-ro w-50">詳情介紹</a>
-            <a href="#" class="btn btn-outline-ro w-50">手刀搶購</a>
+        </li>
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
+            </div>
           </div>
-        </swiper-slide>
-      </swiper>
+        </li>
+        <li class="list-item">
+          <div class="shop-body p-2">
+            <div class="shop-top">
+              <img src="@/assets/img/b296b8afcc74427d5e429850aa2a2149.png" alt srcset>
+            </div>
+            <div class="shop-content">
+              <h4>
+                <a href="http://" class="text-ro">MVP專屬武器</a>
+              </h4>
+              <p class="text-left p-3">
+                購買後您將會取得您欲指定的MVP武器(劍、弓、槍等)，
+                進而體會到MVC武器的強大之處，
+                也會配上其他裝備攻略讓你買好武好上手。
+              </p>
+              <h4>
+                <del>原價 NT$ 1600</del> NT$ 1280
+              </h4>
+            </div>
+            <div class="shop-footer">
+              <a href="#" class="btn btn-ro btn-block text-white">付款搶購去</a>
+            </div>
+          </div>
+        </li>
+      </ul>
       <div class="text-center">
-        <router-link to="/product" class="btn btn-ro text-white">看更多方案</router-link>
+        <a href="#" class="btn btn-ro text-white">看更多組合包</a>
       </div>
     </div>
   </section>
@@ -161,19 +241,34 @@
 </template>
 
 <style lang="scss" scoped>
-
-.shop-top{
-  position: relative;
-  .category-top{
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.list-items {
+  padding: 0;
+}
+.list-item {
+  margin-right: 10px;
+  width: 31.33333%;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.26);
+}
+.list-item:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+}
+.list-item:nth-child(3) {
+  margin-right: 0px;
+}
+@media (max-width: 1024px) {
+  .list-item{
+    width: 48%;
   }
 }
-.shop-content{
-  height: 200px;
+@media (max-width: 769px) {
+  .list-item{
+    width: 100%;
+  }
 }
 </style>
+<<<<<<< HEAD
 
 <script>
 import 'swiper/dist/css/swiper.css';
@@ -249,3 +344,5 @@ export default {
   },
 };
 </script>
+=======
+>>>>>>> parent of b53abf2... 後檯登入頁面調整

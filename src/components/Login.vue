@@ -22,7 +22,7 @@
       source(src='@/assets/01.mp3', type='audio/mpeg')
 =======
 <template>
-  <div class="login-section d-flex justify-content-center align-items-center flex-column">
+  <div class="login-section d-flex justify-content-center align-items-center">
     <loading :active.sync="isLoading"
     :opacity="1">
       <img src="@/assets/loading.gif" alt="" srcset="">
@@ -32,35 +32,7 @@
         </small>
       </vue-typed-js>
     </loading>
-    <div class="login-logo" id="login-logo">
-    </div>
-    <div class="login-bg">
-      <form @submit.prevent="signin">
-        <input
-        type="email"
-        id="email"
-        required
-        autofocus
-        v-model="user.username">
-        <input
-        type="password"
-        id="password"
-        required
-        v-model="user.password">
-        <button class="btn-replay">
-          replay
-        </button>
-        <button class="btn-login" type="submit">
-          登入
-        </button>
-        <router-link to="/">
-          <button class="btn-end">
-            結束
-          </button>
-        </router-link>
-      </form>
-    </div>
-    <!-- <form class="form-signin text-center text-white p-5 rounded" @submit.prevent="signin">
+    <form class="form-signin text-center text-white p-5 rounded" @submit.prevent="signin">
       <img src="@/assets/img/1181362684.gif" alt srcset width="150px" class="img-fluid">
       <vue-typed-js :strings="['快登入你/妳的回憶。']"
       :fadeOut="true"
@@ -96,16 +68,17 @@
         </button>
       </router-link>
       <p class="mt-5 mb-3 text-white">&copy; 2019</p>
-    </form> -->
+    </form>
   </div>
 >>>>>>> parent of 9bb00f8... 後臺登入調整
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 html,
 body {
   height: 100%;
 }
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -140,85 +113,6 @@ body {
   height: 100vh;
   background-image: url(../assets/img/RTC_1920_1080.jpg);
   background-position: center top;
-  position: relative;
-}
-.login-logo{
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  background-image: url(../assets/img/logo.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  width: 202px;
-  height: 130px;
-}
-.login-bg{
-  height: 120px;
-  width: 280px;
-  background-image: url(../assets/img/login.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 25%;
-  #email{
-    position: absolute;
-    width: 130.5px;
-    height: 19px;
-    left: 32.4%;
-    top: 24%;
-    border: 0px;
-    border: 1px solid #b9b8b8;
-    font-size: 12px;
-  }
-  #password{
-    position: absolute;
-    width: 130.5px;
-    height: 19px;
-    left: 32.4%;
-    top: 51%;
-    border: 0px;
-    border: 1px solid #b9b8b8;
-    font-size: 12px;
-  }
-  .btn-login{
-    position: absolute;
-    bottom: 3%;
-    right: 17.5%;
-    width: 42px;
-    font-size: 12px;
-    height: 21px;
-    border-radius: 5px;
-    border: 0px;
-    box-shadow: 0px 0px 2px #000;
-    background-color: #eae8e8;
-    font-weight: bold;
-  }
-  .btn-end{
-    position: absolute;
-    bottom: 3%;
-    right: 1.5%;
-    width: 42px;
-    font-size: 12px;
-    height: 21px;
-    border-radius: 5px;
-    border: 0px;
-    box-shadow: 0px 0px 2px #000;
-    background-color: #eae8e8;
-    font-weight: bold;
-  }
-  .btn-replay{
-    position: absolute;
-    font-size: 12px;
-    bottom: 3.5%;
-    left: 3%;
-    width: 56px;
-    height: 20px;
-    border-radius: 3px;
-    border: 0px;
-    box-shadow: 0px 0px 2px #000;
-    background-color: #eae8e8;
-  }
 }
 </style>
 
@@ -245,19 +139,6 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    const loginLogoId = document.getElementById('login-logo');
-    function getPosition(event) {
-      loginLogoId.style.left = `${event.clientX}px`;
-      loginLogoId.style.top = `${event.clientY}px`;
-    }
-    function positionOver(event) {
-      loginLogoId.style.left = `${event.clientX}px`;
-      loginLogoId.style.top = `${event.clientY}px`;
-    }
-    loginLogoId.addEventListener('drag', getPosition, false);
-    loginLogoId.addEventListener('dragend', positionOver, false);
   },
 };
 </script>

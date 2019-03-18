@@ -13,7 +13,7 @@
           source(src='@/assets/login@2.mp3', type='audio/mpeg')
 =======
 <template>
-  <div class="container">
+  <div>
     <Navbar/>
     <div class="banner d-flex justify-content-center align-items-center">
       <div class="banner-text">
@@ -24,9 +24,33 @@
         </vue-typed-js>
       </div>
     </div>
-    <div>
-      <router-view/>
-    </div>
+    <ul class="nav justify-content-center nav-tabs sticky-top">
+      <li class="nav-item">
+        <router-link class="nav-link" to="/ProductList">
+          <font-awesome-icon :icon="['fab','hotjar']"/>
+          推薦商品
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/ProductList">
+          <font-awesome-icon :icon="['fas','chess-king']"/>
+          MVP武器
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/ProductList">
+          <font-awesome-icon :icon="['fas','democrat']"/>
+          MVP防具
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/ProductList">
+          <font-awesome-icon :icon="['fas','shopping-bag']"/>
+          組合優惠
+        </router-link>
+      </li>
+    </ul>
+    <router-view/>
     <Footer/>
   </div>
 >>>>>>> parent of 9bb00f8... 後臺登入調整
@@ -53,8 +77,7 @@ export default {
     background-image: url(../assets/img/Product/banner.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 60px;
-    height: 500px;
+    height: 100vh;
   }
   .banner-text {
     background-color: rgba(0, 0, 0, 0.45);

@@ -51,6 +51,7 @@ export default {
       const vm = this;
       this.$http.post(url, vm.user).then((response) => {
         if (response.data.success) {
+          window.alert('已登出');
           vm.$router.push('/login');
         }
       });

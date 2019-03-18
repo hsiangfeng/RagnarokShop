@@ -14,8 +14,8 @@
 <style lang="scss">
 .play-bgm {
   position: fixed;
-  right: 50px;
-  bottom: 30px;
+  right: 30px;
+  bottom: 20px;
   z-index: 10;
 }
 </style>
