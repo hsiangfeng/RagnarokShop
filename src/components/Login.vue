@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template lang="pug">
   .login-section.d-flex.justify-content-center.align-items-center.flex-column
     loading(:active.sync='isLoading', :opacity='1')
@@ -19,6 +20,85 @@
             | 結束
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='@/assets/01.mp3', type='audio/mpeg')
+=======
+<template>
+  <div class="login-section d-flex justify-content-center align-items-center flex-column">
+    <loading :active.sync="isLoading"
+    :opacity="1">
+      <img src="@/assets/loading.gif" alt="" srcset="">
+      <vue-typed-js :strings="['波利加載中…']"
+      class="justify-content-center align-items-center">
+        <small class="font-weight-normal typing">
+        </small>
+      </vue-typed-js>
+    </loading>
+    <div class="login-logo" id="login-logo">
+    </div>
+    <div class="login-bg">
+      <form @submit.prevent="signin">
+        <input
+        type="email"
+        id="email"
+        required
+        autofocus
+        v-model="user.username">
+        <input
+        type="password"
+        id="password"
+        required
+        v-model="user.password">
+        <button class="btn-replay">
+          replay
+        </button>
+        <button class="btn-login" type="submit">
+          登入
+        </button>
+        <router-link to="/">
+          <button class="btn-end">
+            結束
+          </button>
+        </router-link>
+      </form>
+    </div>
+    <!-- <form class="form-signin text-center text-white p-5 rounded" @submit.prevent="signin">
+      <img src="@/assets/img/1181362684.gif" alt srcset width="150px" class="img-fluid">
+      <vue-typed-js :strings="['快登入你/妳的回憶。']"
+      :fadeOut="true"
+      class="justify-content-center align-items-center">
+        <h1 class="h3 mb-3 font-weight-normal typing">
+        </h1>
+      </vue-typed-js>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+        autofocus
+        v-model="user.username"
+      >
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+        required
+        v-model="user.password"
+      >
+      <button class="btn btn-lg btn-ro text-white" type="submit">
+        <font-awesome-icon :icon="['fas', 'sign-in-alt']"/> 登入
+      </button>
+      <router-link to="/">
+        <button class="btn btn-lg btn-ro text-white">
+          <font-awesome-icon :icon="['fas', 'undo-alt']"/> 返回
+        </button>
+      </router-link>
+      <p class="mt-5 mb-3 text-white">&copy; 2019</p>
+    </form> -->
+  </div>
+>>>>>>> parent of 9bb00f8... 後臺登入調整
 </template>
 
 <style lang="scss" scoped>
@@ -61,7 +141,6 @@ body {
   background-image: url(../assets/img/RTC_1920_1080.jpg);
   background-position: center top;
   position: relative;
-  cursor: url(../assets/img/normal_select.png), auto;
 }
 .login-logo{
   position: absolute;
@@ -82,12 +161,6 @@ body {
   border-radius: 5px;
   position: absolute;
   bottom: 25%;
-  .login-top{
-    position: absolute;
-    width: 100%;
-    height: 17px;
-    z-index: 5;
-  }
   #email{
     position: absolute;
     width: 130.5px;
@@ -120,7 +193,6 @@ body {
     box-shadow: 0px 0px 2px #000;
     background-color: #eae8e8;
     font-weight: bold;
-    cursor: url(../assets/img/link_select.png), auto;
   }
   .btn-end{
     position: absolute;
@@ -134,9 +206,8 @@ body {
     box-shadow: 0px 0px 2px #000;
     background-color: #eae8e8;
     font-weight: bold;
-    cursor: url(../assets/img/link_select.png), auto;
   }
-  .btn-play{
+  .btn-replay{
     position: absolute;
     font-size: 12px;
     bottom: 3.5%;
@@ -147,7 +218,6 @@ body {
     border: 0px;
     box-shadow: 0px 0px 2px #000;
     background-color: #eae8e8;
-    cursor: url(../assets/img/link_select.png), auto;
   }
 }
 </style>
@@ -175,53 +245,19 @@ export default {
         }
       });
     },
-    dragWindow() {
-      const loginLogoId = document.getElementById('login-logo');
-      const loginTop = document.getElementById('login-top');
-      const loginBg = document.getElementById('login-bg');
-      function getPosition(event) {
-        loginLogoId.style.left = `${event.clientX}px`;
-        loginLogoId.style.top = `${event.clientY}px`;
-      }
-      function positionOver(event) {
-        loginLogoId.style.left = `${event.clientX}px`;
-        loginLogoId.style.top = `${event.clientY}px`;
-      }
-      function getPosition2(event) {
-        loginBg.style.left = `${event.clientX}px`;
-        loginBg.style.top = `${event.clientY}px`;
-      }
-      function positionOver2(event) {
-        loginBg.style.left = `${event.clientX}px`;
-        loginBg.style.top = `${event.clientY}px`;
-      }
-      loginLogoId.addEventListener('drag', getPosition, false);
-      loginLogoId.addEventListener('dragend', positionOver, false);
-      loginTop.addEventListener('drag', getPosition2, false);
-      loginTop.addEventListener('dragend', positionOver2, false);
-    },
-    autoPlayMusic() {
-      const roBGM = document.getElementById('roBGM');
-      if (roBGM.paused) {
-        roBGM.play();
-        roBGM.volume = 0.2;
-      }
-    },
-    musicStatus() {
-      const musicPlay = document.getElementById('musicPlay');
-      const roBGM = document.getElementById('roBGM');
-      if (roBGM.paused) {
-        roBGM.play();
-        musicPlay.innerHTML = 'stop';
-      } else {
-        roBGM.pause();
-        musicPlay.textContent = 'play';
-      }
-    },
   },
   mounted() {
-    this.dragWindow();
-    this.autoPlayMusic();
+    const loginLogoId = document.getElementById('login-logo');
+    function getPosition(event) {
+      loginLogoId.style.left = `${event.clientX}px`;
+      loginLogoId.style.top = `${event.clientY}px`;
+    }
+    function positionOver(event) {
+      loginLogoId.style.left = `${event.clientX}px`;
+      loginLogoId.style.top = `${event.clientY}px`;
+    }
+    loginLogoId.addEventListener('drag', getPosition, false);
+    loginLogoId.addEventListener('dragend', positionOver, false);
   },
 };
 </script>
