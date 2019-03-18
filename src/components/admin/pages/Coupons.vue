@@ -7,7 +7,7 @@
     .text-right.my-2
       button.btn.btn-ro.text-white(type='button', @click="openModel('new')")
         font-awesome-icon(:icon="['fas', 'plus']")
-          | 新增優惠卷
+        | 新增優惠卷
     table.table.table-hover.table-border.table-striped
       thead
         tr.text-center.bg-ro.text-white
@@ -29,65 +29,65 @@
           td
             button.btn.btn-outline-ro(@click="openModel('edit', item)")
               font-awesome-icon(:icon="['fas', 'edit']")
-                | 編輯
-            button.btn.btn-outline-danger(@click="openModel('delete', item)")
+              | 編輯
+            button.btn.btn-outline-danger.ml-1(@click="openModel('delete', item)")
               font-awesome-icon(:icon="['fas', 'trash-alt']")
-                | 刪除
-    paginationcomponents(:paginationservice='pagination', v-on:pageservice='getCoupons')
-      #couponsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-        .modal-dialog(role='document')
-          .modal-content
-            .modal-header
-              h5#exampleModalLabel.modal-title
-                | {{modelTitle}}
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-            .modal-body
-              .form-row
-                .form-group.col-md-6
-                  label(for='title') 優惠卷標題
-                  input#title.form-control(type='text', placeholder='標題', v-model='cacheCoupons.title')
-                .form-group.col-md-6
-                  label(for='percent') 折扣比(%)
-                  input#percent.form-control(type='range', placeholder='百分比', min='0', max='100', value='90', @input='getRanger', v-model='cacheCoupons.percent')
-                  .text-center
-                    | 折扣比：
-                    span#percentValue(v-html='cacheCoupons.percent') 0
-                    | %
-              .form-group
-                label(for='due-date') 過期日期
-                p(v-if='cacheCoupons.due_date') {{cacheCoupons.due_date | timestamp}}
-                input#due-date.form-control(type='date', v-model='cacheDatetime', @input='getDatetime()')
-              .form-group
-                label(for='code') 折扣碼
-                input#code.form-control(type='text', v-model='cacheCoupons.code')
-              .form-group
-                .form-check
-                  input#isEnabled.form-check-input(type='checkbox', v-model='cacheCoupons.is_enabled')
-                  label.form-check-label(for='isEnabled')
-                    | 啟用
-            .modal-footer
-              button.btn.btn-secondary(type='button', data-dismiss='modal') 取消
-              button.btn.btn-primary(type='button', @click='updataCoupons')
-                font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
-                  | 確認
-      #deleteCouponsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-        .modal-dialog(role='document')
-          .modal-content.border-0
-            .modal-header.bg-danger.text-white
-              h5#exampleModalLabel.modal-title
-                span {{modelTitle}}
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-            .modal-body
-              | 是否刪除
-              strong.text-danger {{ cacheCoupons.title }}
-              |  優惠卷(刪除後將無法恢復)。
-            .modal-footer
-              button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
-              button.btn.btn-danger(type='button', @click='deleteCoupons()')
-                font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
-                  | 確認刪除
+              | 刪除
+    paginationComponents(:paginationService='pagination', v-on:pageService='getCoupons')
+    #couponsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title
+              | {{modelTitle}}
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .form-row
+              .form-group.col-md-6
+                label(for='title') 優惠卷標題
+                input#title.form-control(type='text', placeholder='標題', v-model='cacheCoupons.title')
+              .form-group.col-md-6
+                label(for='percent') 折扣比(%)
+                input#percent.form-control(type='range', placeholder='百分比', min='0', max='100', value='90', @input='getRanger', v-model='cacheCoupons.percent')
+                .text-center
+                  | 折扣比：
+                  span#percentValue(v-html='cacheCoupons.percent') 0
+                  | %
+            .form-group
+              label(for='due-date') 過期日期
+              p(v-if='cacheCoupons.due_date') {{cacheCoupons.due_date | timestamp}}
+              input#due-date.form-control(type='date', v-model='cacheDatetime', @input='getDatetime()')
+            .form-group
+              label(for='code') 折扣碼
+              input#code.form-control(type='text', v-model='cacheCoupons.code')
+            .form-group
+              .form-check
+                input#isEnabled.form-check-input(type='checkbox', v-model='cacheCoupons.is_enabled')
+                label.form-check-label(for='isEnabled')
+                  | 啟用
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') 取消
+            button.btn.btn-primary(type='button', @click='updataCoupons')
+              font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
+              | 確認
+    #deleteCouponsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content.border-0
+          .modal-header.bg-danger.text-white
+            h5#exampleModalLabel.modal-title
+              span {{modelTitle}}
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            | 是否刪除
+            strong.text-danger {{ cacheCoupons.title }}
+            |  優惠卷(刪除後將無法恢復)。
+          .modal-footer
+            button.btn.btn-outline-secondary(type='button', data-dismiss='modal') 取消
+            button.btn.btn-danger(type='button', @click='deleteCoupons()')
+              font-awesome-icon(:icon="['fas', 'spinner']", v-if='status.loadingItem', spin='')
+              | 確認刪除
 </template>
 
 <script>

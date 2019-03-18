@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '@/components/Layout';
 import Index from '@/components/pages/Index';
-import Product from '@/components/Product';
 import Products from '@/components/pages/Products';
 import Login from '@/components/Login';
 import Dashboard from '@/components/admin/Dashboard';
@@ -12,6 +11,7 @@ import Coupons from '@/components/admin/pages/Coupons';
 import Orders from '@/components/admin/pages/Orders';
 import CustomerOrders from '@/components/admin/pages/CustomerOrders';
 import CustomerCheck from '@/components/admin/pages/CustomerCheck';
+import AboutRo from '@/components/pages/AboutRo';
 
 Vue.use(Router);
 
@@ -28,10 +28,10 @@ export default new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login',
+      redirect: '/index',
     },
     {
-      path: '/',
+      path: '/index',
       name: '',
       component: Layout,
       children: [
@@ -40,15 +40,13 @@ export default new Router({
           name: 'Index',
           component: Index,
         },
-      ],
-    },
-    {
-      path: '/product',
-      name: '',
-      component: Product,
-      children: [
         {
-          path: '',
+          path: '/aboutro',
+          name: 'AboutRo',
+          component: AboutRo,
+        },
+        {
+          path: '/products',
           name: 'Products',
           component: Products,
         },

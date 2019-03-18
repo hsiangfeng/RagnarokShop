@@ -14,7 +14,7 @@
           | stop
         button.btn-login(type='submit')
           | 登入
-        router-link(to='/')
+        router-link(to='/index')
           button.btn-end
             | 結束
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')

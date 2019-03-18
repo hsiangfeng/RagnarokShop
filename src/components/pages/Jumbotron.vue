@@ -2,7 +2,7 @@
   header.header
     .jumbotron.container.text-center.bg-transparent
       vue-typed-js.justify-content-center.align-items-center(:strings="['我在仙境傳說等你哦~']",
-      :fadeout='true')
+      :fadeOut='true')
         h3.text-ro
           | 找回最初的感動⋯
           br

@@ -1,65 +1,90 @@
 <template lang="pug">
-  section.container
+  section
     loading(:active.sync='isLoading', :opacity='1')
       img(src='@/assets/loading.gif', alt='', srcset='')
       vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
         small.font-weight-normal.typing
-    nav(aria-label='breadcrumb')
-      ol.breadcrumb.bg-transparent
-        li.breadcrumb-item
-          a(href='#') 首頁
-        li.breadcrumb-item.active(aria-current='page') 全部商品
-    .content
-      .category-list
-        ul.list-items
-          li
-            a.items(href='#', @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
-              img.items-img(src='@/assets/img/yJFR7SP.gif')
-              div 全部商品
-          li
-            a.items(href='#', @click.prevent="category = '熱門商品', getProducts()", :class="{'active': category == '熱門商品' }")
-              img.items-img(src='@/assets/img/0d86f9da98cabdbbcf6040053a83aaf8.png')
-              div 熱門商品
-          li
-            a.items(href='#', @click.prevent="category = '組合優惠', getProducts()", :class="{'active': category == '組合優惠' }")
-              img.items-img(src='@/assets/img/9d8265cf8508453204d3ec5184ab7b99.png')
-              div 組合優惠
-          li
-            a.items(href='#', @click.prevent="category = 'MVP卡片', getProducts()", :class="{'active': category == 'MVP卡片' }")
-              img.items-img(src='@/assets/img/663ffbf1ed4fd82dc0f66202293c016d.png')
-              div MVP卡片
-          li
-            a.items(href='#', @click.prevent="category = 'MVP武器', getProducts()", :class="{'active': category == 'MVP武器' }")
-              img.items-img(src='@/assets/img/5a293f45bbbe31fe5fe1de93a5615da8.png')
-              div MVP武器
-          li
-            a.items(href='#', @click.prevent="category = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
-              img.items-img(src='@/assets/img/05249f42bb0c86e0a3f2c55b70e79b75.png')
-              div MVP防具
-      .products
-        h3 {{category}}
-        ul.products-list
-          li.products-item(v-for='item in getCategory', :key='item.id')
-            .products-top.text-center
-              .badge.badge-danger.category-top {{item.category}}
-              img.card-img(:src='item.imageUrl')
-            .products-content.p-2
-              h6.font-weight-bold
-                a.text-ro(href='http://') {{item.title}}
-              div
-                .description.text-truncate
-                  | {{item.description}}
-                  | {{item.content}}
-              .d-flex.justify-content-between
-                | 特價 NT$ {{item.price}}
-                del
-                  small 原價 NT$ {{item.origin_price}}
-            .products-footer
-              a.btn.btn-outline-ro.btn-block(href='#') 詳情了解
-              a.btn.btn-outline-ro.btn-block(href='#') 手刀搶購
+    .banner.d-flex.justify-content-center.align-items-center
+      .banner-text
+        vue-typed-js(:strings="['公~我回來了~']", :fadeOut='true')
+          h3.text-white.typing
+    .container
+      nav(aria-label='breadcrumb')
+        ol.breadcrumb.bg-transparent
+          li.breadcrumb-item
+            a(href='#') 首頁
+          li.breadcrumb-item.active(aria-current='page') 全部商品
+      .content
+        .category-list
+          ul.list-items
+            li
+              a.items(href='#', @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
+                img.items-img(src='@/assets/img/yJFR7SP.gif')
+                div 全部商品
+            li
+              a.items(href='#', @click.prevent="category = '熱門商品', getProducts()", :class="{'active': category == '熱門商品' }")
+                img.items-img(src='@/assets/img/0d86f9da98cabdbbcf6040053a83aaf8.png')
+                div 熱門商品
+            li
+              a.items(href='#', @click.prevent="category = '組合優惠', getProducts()", :class="{'active': category == '組合優惠' }")
+                img.items-img(src='@/assets/img/9d8265cf8508453204d3ec5184ab7b99.png')
+                div 組合優惠
+            li
+              a.items(href='#', @click.prevent="category = 'MVP卡片', getProducts()", :class="{'active': category == 'MVP卡片' }")
+                img.items-img(src='@/assets/img/663ffbf1ed4fd82dc0f66202293c016d.png')
+                div MVP卡片
+            li
+              a.items(href='#', @click.prevent="category = 'MVP武器', getProducts()", :class="{'active': category == 'MVP武器' }")
+                img.items-img(src='@/assets/img/5a293f45bbbe31fe5fe1de93a5615da8.png')
+                div MVP武器
+            li
+              a.items(href='#', @click.prevent="category = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
+                img.items-img(src='@/assets/img/05249f42bb0c86e0a3f2c55b70e79b75.png')
+                div MVP防具
+        .products
+          h3 {{category}}
+          ul.products-list
+            li.products-item(v-for='item in getCategory', :key='item.id')
+              .products-top.text-center
+                .badge.badge-danger.category-top {{item.category}}
+                img.card-img(:src='item.imageUrl')
+              .products-content.p-2
+                h6.font-weight-bold
+                  a.text-ro(href='http://') {{item.title}}
+                div
+                  .description.text-truncate
+                    | {{item.description}}
+                    | {{item.content}}
+                .d-flex.justify-content-between
+                  | 特價 NT$ {{item.price}}
+                  del
+                    small 原價 NT$ {{item.origin_price}}
+              .products-footer
+                a.btn.btn-outline-ro.btn-block(href='#') 詳情了解
+                a.btn.btn-outline-ro.btn-block(href='#') 手刀搶購
+    audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
+      source(src='@/assets/login@2.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>
+  .banner{
+    background-image: url(../../assets/img/Product/banner.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 60px;
+    height: 500px;
+  }
+  .banner-text {
+    background-color: rgba(0, 0, 0, 0.45);
+    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+  }
+  .sticky-top{
+    background-color: #fff;
+    top: 99.88px;
+  }
   .content{
     display: flex;
     .category-list{
@@ -202,12 +227,18 @@ export default {
     getProducts() {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products/all`;
-      console.log(url);
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
         vm.products = response.data.products;
         vm.isLoading = false;
       });
+    },
+    autoPlayMusic() {
+      const roBGM = document.getElementById('roBGM');
+      if (roBGM.paused) {
+        roBGM.play();
+        roBGM.volume = 0.2;
+      }
     },
   },
   computed: {
@@ -226,6 +257,9 @@ export default {
   created() {
     this.getProducts();
     this.category = this.$route.params.data ? this.$route.params.data : '全部商品';
+  },
+  mounted() {
+    this.autoPlayMusic();
   },
 };
 </script>

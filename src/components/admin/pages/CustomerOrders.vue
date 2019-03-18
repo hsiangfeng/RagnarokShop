@@ -7,7 +7,8 @@
     .row.mt-4
       .col-md-4.mb-4(v-for='item in products', :key='item.id')
         .card.border-0.shadow-sm
-          img.card-img-top(:src='item.imageUrl', v-if='item.imageUrl')
+          .text-center
+            img(:src='item.imageUrl', v-if='item.imageUrl')
           .card-body
             span.badge.badge-secondary.float-right.ml-2 {{item.category}}
             h5.card-title
@@ -19,10 +20,10 @@
           .card-footer.d-flex
             button.btn.btn-outline-secondary.btn-sm(type='button', @click='getOneProduct(item.id)')
               font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
-                | 查看更多
+              | 查看更多
             button.btn.btn-outline-danger.btn-sm.ml-auto(type='button', @click='addtoCart(item.id)', v-on:keyup.enter='addtoCart(item.id)')
               font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
-                | 加到購物車
+              | 加到購物車
     .my-5.row.justify-content-center
       .col-md-6
         table.table
@@ -37,7 +38,7 @@
               td.align-middle
                 button.btn.btn-outline-danger.btn-sm(type='button', @click='removeCart(item.id)')
                   font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingItem === item.id')
-                    font-awesome-icon(:icon="['far','trash-alt']", v-if='status.loadingItem !== item.id')
+                  font-awesome-icon(:icon="['far','trash-alt']", v-if='status.loadingItem !== item.id')
               td.align-middle
                 | {{ item.product.title }}
                 .text-success(v-if='item.coupon') 已套用優惠券

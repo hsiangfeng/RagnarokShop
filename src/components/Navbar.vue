@@ -18,7 +18,7 @@
                 font-awesome-icon(:icon="['fab', 'product-hunt']")
                 | 全部商品
             li.nav-item
-              router-link.nav-link.font-weight-bold.p-5(:to="{name: 'Products', params:{data: '熱門商品'}}")
+              router-link.nav-link.font-weight-bold.p-5(:to="{name: 'AboutRo'}")
                 font-awesome-icon(:icon="['fab', 'hotjar']")
                 | 關於仙境
         a.navbar-brand.d-none.d-lg-block(href='#')
@@ -42,6 +42,31 @@
 
 <style lang="scss">
   .fixed-top{
-  z-index: 998 !important;
-}
+    z-index: 998 !important;
+  }
 </style>
+
+<script>
+/* global $ */
+export default {
+  data() {
+    return {
+    };
+  },
+  methods: {
+    navbarToggler() {
+      const windowWidth = $(window).width();
+      $(() => {
+        if (windowWidth <= 991) {
+          $('.navbar a').on('click', () => {
+            $('.navbar-toggler').click();
+          });
+        }
+      });
+    },
+  },
+  mounted() {
+    this.navbarToggler();
+  },
+};
+</script>
