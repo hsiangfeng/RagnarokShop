@@ -63,7 +63,7 @@
                 a.btn.btn-outline-ro.btn-block(href='#') 詳情了解
                 a.btn.btn-outline-ro.btn-block(href='#') 手刀搶購
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='@/assets/login@2.mp3', type='audio/mpeg')
+      source(src='/static/login@2.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>

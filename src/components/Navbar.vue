@@ -31,7 +31,7 @@
                 | 遊戲指南
                 span.sr-only (current)
             li.nav-item
-              router-link.nav-link.font-weight-bold.p-5(to='/login')
+              a.nav-link.font-weight-bold.p-5(href='https://hsiangfeng.github.io/SPA-Resume/')
                 font-awesome-icon(:icon="['fas', 'user-tie']")
                 | 關於作者
             li.nav-item

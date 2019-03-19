@@ -18,7 +18,7 @@
           button.btn-end
             | 結束
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='@/assets/01.mp3', type='audio/mpeg')
+      source(src='/static/01.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>
