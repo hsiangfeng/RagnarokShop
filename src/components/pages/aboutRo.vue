@@ -13,7 +13,7 @@
         .col-md-6.d-flex.justify-content-center.align-items-center.text-ro-dark
           | 為了表現出『仙境傳說』中的龐大世界觀，負責研發的Gravity公司，採用了融合東方與西方色彩的3D圖像。遊戲畫面以全3D構成，以45度角呈現，玩家可以自由選擇喜歡的角度；在城鎮地圖中和草原上皆可旋轉360度，其中的建築物與自然景觀也具有相當的立體感。
           | 『仙境傳說』的世界位於「塵世」中的盧恩─米德加爾特王國 ，也是人類居住的地方。整個世界分為三個區域，分別為人類、諸神、魔鬼所居住；隨著故事情節的發展，這三個種族將循序漸進地進入到遊戲中。
-    h3.text-center.pt-5.text-ro-dark 冒險之旅開始於四個城市
+    h3.text-center.pt-5.text-ro-dark 冒險之旅開始於五個城市
     section.my-10
       .bg-ro-light.about-bg-ro
         .container
@@ -156,8 +156,10 @@ export default {
     autoPlayMusic() {
       const roBGM = document.getElementById('roBGM');
       if (roBGM.paused) {
-        roBGM.play();
-        roBGM.volume = 0.2;
+        setTimeout(() => {
+          roBGM.play();
+          roBGM.volume = 0.2;
+        }, 2000);
       }
     },
   },

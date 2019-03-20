@@ -45,8 +45,10 @@ export default {
       const vm = this;
       const BGM = document.getElementById('roBGM');
       if (BGM.paused) {
-        vm.bgmStatus = true;
-        BGM.play();
+        setTimeout(() => {
+          vm.bgmStatus = true;
+          BGM.play();
+        }, 2000);
       }
       BGM.volume = 0.2;
     },

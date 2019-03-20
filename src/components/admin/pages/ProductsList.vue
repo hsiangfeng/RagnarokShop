@@ -52,7 +52,7 @@
         .modal-content.border-0
           .modal-header.bg-dark.text-white
             h5#exampleModalLabel.modal-title
-              span {{modelStatus}}
+              span {{modelTitle}}
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body

@@ -236,8 +236,10 @@ export default {
     autoPlayMusic() {
       const roBGM = document.getElementById('roBGM');
       if (roBGM.paused) {
-        roBGM.play();
-        roBGM.volume = 0.2;
+        setTimeout(() => {
+          roBGM.play();
+          roBGM.volume = 0.2;
+        }, 1500);
       }
     },
   },
