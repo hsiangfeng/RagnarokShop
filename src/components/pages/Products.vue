@@ -6,8 +6,14 @@
         small.font-weight-normal.typing
     .banner.d-flex.justify-content-center.align-items-center
       .banner-text
-        vue-typed-js(:strings="['公~我回來了~']", :fadeOut='true')
-          h3.text-white.typing
+        vue-typed-js(:strings="['那你還在等什麼?']",
+        :fadeOut='true'
+        :startDelay= 1000)
+          h3.text-white.text-center
+            | 公~我回來了~
+            br
+            span.typing
+        img(src="../../assets/img/AW2775921_04.gif").confound
     .container
       nav(aria-label='breadcrumb')
         ol.breadcrumb.bg-transparent
@@ -16,7 +22,7 @@
           li.breadcrumb-item.active(aria-current='page') 全部商品
       .content
         .category-list
-          ul.list-items
+          ul.list-items.sticky-list
             li
               a.items(href='#', @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
                 img.items-img(src='@/assets/img/yJFR7SP.gif')
@@ -60,8 +66,50 @@
                   del
                     small 原價 NT$ {{item.origin_price}}
               .products-footer
-                a.btn.btn-outline-ro.btn-block(href='#') 詳情了解
-                a.btn.btn-outline-ro.btn-block(href='#') 手刀搶購
+                .products-btn(v-if="item.is_enabled")
+                  a.btn.btn-outline-ro.btn-block(href='#' @click.prevent="getOneProduct(item.id)")
+                    font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === item.id')
+                    | 詳情了解
+                  a.btn.btn-outline-danger.btn-block(href='#' @click.prevent="addCart(item.id)")
+                    font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === item.id')
+                    | 手刀搶購
+                .products-btn-disabled(v-else)
+                  a.btn.btn-outline-danger.btn-block.disabled(href='#')
+                    | 下次請早
+    #openModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.align-items-center
+            h5#exampleModalLabel.modal-title.d-flex.justify-content-between
+              div {{cacheModelItem.title}}
+            span.badge.badge-danger {{cacheModelItem.category}}
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .text-center
+              img(:src="cacheModelItem.imageUrl" width="100px").img-fluid
+            .text-left
+              | {{cacheModelItem.description}}
+            .text-left.blockquote-footer
+              | {{cacheModelItem.content}}
+            .d-flex.justify-content-between.align-items-center
+              span.text-ro-dark.h3 NT$ {{cacheModelItem.price}}
+              del
+                small 原價 NT$ {{cacheModelItem.origin_price}}
+            select.form-control(name='', v-model='cacheModelItem.num')
+              option(:value='num', v-for='num in 10', :key='num')
+                | 購買 {{num}} {{cacheModelItem.unit}}
+          .modal-footer
+            .text-muted.text-nowrap.mr-3(v-if="cacheModelItem.num")
+              | 小計
+              span
+              | {{cacheModelItem.num * cacheModelItem.price}}
+            .text-muted.text-nowrap.mr-3(v-else)
+              | 請選擇購買數量
+            button.btn.btn-secondary(type='button', data-dismiss='modal') 關閉
+            button.btn.btn-primary(type='button' @click.prevent="addCart(cacheModelItem.id, cacheModelItem.num)")
+              font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === cacheModelItem.id')
+              | 加入購物車
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='/static/login@2.mp3', type='audio/mpeg')
 </template>
@@ -76,14 +124,23 @@
   }
   .banner-text {
     background-color: rgba(0, 0, 0, 0.45);
-    height: 200px;
     padding: 10px;
     border-radius: 10px;
     display: flex;
+    position: relative;
   }
-  .sticky-top{
+  .confound{
+    position: absolute;
+    width: 100px;
+    top: -40%;
+    left: -24%;
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .sticky-list{
     background-color: #fff;
     top: 99.88px;
+    position: sticky;
   }
   .content{
     display: flex;
@@ -150,9 +207,9 @@
       margin-left: 0px;
     }
     .products-list{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
   }
   .products-item {
@@ -187,6 +244,12 @@
         width: 100%;
       }
     }
+    .products-btn{
+      width: 100%;
+    }
+    .products-btn-disabled{
+      width: 100%;
+    }
     .description{
       height: 103px;
     }
@@ -215,10 +278,17 @@
 </style>
 
 <script>
+/* global $ */
+
 export default {
   data() {
     return {
       products: [],
+      cacheModelItem: {},
+      modelTitle: '',
+      status: {
+        loadingID: '',
+      },
       category: '全部商品',
       isLoading: false,
     };
@@ -231,6 +301,81 @@ export default {
       this.$http.get(url).then((response) => {
         vm.products = response.data.products;
         vm.isLoading = false;
+      });
+    },
+    getOneProduct(id) {
+      const url = `${process.env.APIPATH}/api/${
+        process.env.COUSTOMPATH
+      }/product/${id}`;
+      const vm = this;
+      vm.status.loadingID = id;
+      this.$http.get(url).then((response) => {
+        if (response.data.success) {
+          vm.cacheModelItem = response.data.product;
+          $('#openModal').modal('show');
+          vm.status.loadingID = '';
+        } else {
+          vm.status.loadingID = '';
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
+        }
+      });
+    },
+    addCart(id, qty = 1) {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${
+        process.env.COUSTOMPATH
+      }/cart`;
+      vm.status.loadingID = id;
+      const cartContent = {
+        product_id: id,
+        qty,
+      };
+      this.$http.post(url, { data: cartContent }).then((response) => {
+        if (response.data.message === '已加入購物車') {
+          this.$bus.$emit('message:push',
+            '產品加入購物車成功(*ゝ∀･)v'
+            , 'success');
+          this.$cartBus.$emit('cartCreate:push');
+          $('#openModal').modal('hide');
+          vm.status.loadingID = '';
+        } else if (response.data.message === '加入購物車有誤') {
+          vm.status.loadingID = '';
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
+        } else {
+          vm.status.loadingID = '';
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
+        }
+      });
+    },
+    removeCart(id) {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${
+        process.env.COUSTOMPATH
+      }/cart/${id}`;
+      vm.status.loadingItem = id;
+      this.$http.delete(url).then((response) => {
+        if (response.data.success) {
+          this.$bus.$emit('message:push',
+            '產品刪除成功(*ゝ∀･)v'
+            , 'success');
+          vm.status.loadingItem = '';
+          this.getCarts();
+        } else {
+          vm.status.loadingItem = '';
+          this.$bus.$emit('message:push',
+            `出現錯誤惹，好糗Σ( ° △ °|||)︴
+            ${response.data.message}`
+            , 'danger');
+        }
       });
     },
     autoPlayMusic() {
@@ -262,6 +407,10 @@ export default {
   },
   mounted() {
     this.autoPlayMusic();
+    setTimeout(() => {
+      const confound = document.querySelector('.confound');
+      confound.style.opacity = 1;
+    }, 2000);
   },
 };
 </script>

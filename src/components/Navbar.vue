@@ -26,7 +26,7 @@
         #navbarSupportedContent.collapse.navbar-collapse
           ul.navbar-nav.mr-auto
             li.nav-item
-              router-link.nav-link.font-weight-bold.p-5(to='/')
+              router-link.nav-link.font-weight-bold.p-5(:to="{name: 'Customer'}")
                 font-awesome-icon(:icon="['fas', 'shopping-cart']")
                 | 購物車
                 span.sr-only (current)

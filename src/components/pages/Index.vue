@@ -6,6 +6,7 @@
     Other
     Shop
     Partner
+    CartMessage
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='/static/08.mp3', type='audio/mpeg')
     .play-bgm
@@ -32,6 +33,7 @@ import Esay from '@/components/pages/Esay';
 import Other from '@/components/pages/Other';
 import Shop from '@/components/pages/Shop';
 import Partner from '@/components/pages/Partner';
+import CartMessage from '@/components/pages/CartMessage';
 
 export default {
   name: 'Index',
@@ -72,6 +74,7 @@ export default {
     Other,
     Shop,
     Partner,
+    CartMessage,
   },
   mounted() {
     $(() => {

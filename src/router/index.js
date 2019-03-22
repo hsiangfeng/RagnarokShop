@@ -12,6 +12,8 @@ import Orders from '@/components/admin/pages/Orders';
 import CustomerOrders from '@/components/admin/pages/CustomerOrders';
 import CustomerCheck from '@/components/admin/pages/CustomerCheck';
 import AboutRo from '@/components/pages/AboutRo';
+import Customer from '@/components/pages/Customer';
+import CheckOrder from '@/components/pages/CheckOrder';
 
 Vue.use(Router);
 
@@ -49,6 +51,16 @@ export default new Router({
           path: '/products',
           name: 'Products',
           component: Products,
+        },
+        {
+          path: '/customer',
+          name: 'Customer',
+          component: Customer,
+        },
+        {
+          path: '/check_order/:orderId',
+          name: 'CheckOrder',
+          component: CheckOrder,
         },
       ],
     },
