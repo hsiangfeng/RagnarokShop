@@ -60,7 +60,7 @@
                 .h3.text-ro oh! 竟然沒東西 !
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') 取消
-            a(href="http://localhost:8080/#/customer").btn.btn-outline-ro 結帳
+            a(href="https://hsiangfeng.github.io/RagnarokShop/#/customer").btn.btn-outline-ro 結帳
 </template>
 
 <style lang="scss" scoped>

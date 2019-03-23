@@ -21,7 +21,7 @@
             .col-md-6
               img(src="../../assets/img/about/00007711.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
-              div
+              .h-100
                 .about-content
                   .title.text-ro-dark.h4.text-center.font-weight-bold 中央之城『普隆德拉』
                   .about-text.text-ro-dark.font-weight-bold
@@ -36,7 +36,7 @@
             .col-md-6
               img(src="../../assets/img/about/00007339.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
-              div
+              .h-100
                 .about-content
                   .title.text-ro-dark.h4.text-center.font-weight-bold 魔法之都『吉芬』
                   .about-text.text-ro-dark.font-weight-bold
@@ -51,7 +51,7 @@
             .col-md-6
               img(src="../../assets/img/about/00007713.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
-              div
+              .h-100
                 .about-content
                   .title.text-ro-dark.h4.text-center.font-weight-bold 邊陲之城『夢蘿克』
                   .about-text.text-ro-dark.font-weight-bold
@@ -68,7 +68,7 @@
             .col-md-6
               img(src="../../assets/img/about/eLfCllc.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
-              div
+              .h-100
                 .about-content
                   .title.text-ro-dark.h4.text-center.font-weight-bold 山中之城『斐揚』
                   .about-text.text-ro-dark.font-weight-bold
@@ -83,7 +83,7 @@
             .col-md-6
               img(src="../../assets/img/about/00007667.jpg").img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
-              div
+              .h-100
                 .about-content
                   .title.text-ro-dark.h4.text-center.font-weight-bold 海港之城『艾爾貝塔』
                   .about-text.text-ro-dark.font-weight-bold
@@ -92,7 +92,7 @@
                     p
                       | 「斯楚瓦爾茲貝特」的寶藏沈船，使得寶物獵人和商人大量聚集於此。以商人為職業的玩家須在此地修練。
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='/static/12.mp3', type='audio/mpeg')
+      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/12.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>

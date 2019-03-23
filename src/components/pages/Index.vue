@@ -8,7 +8,7 @@
     Partner
     CartMessage
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='/static/08.mp3', type='audio/mpeg')
+      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3', type='audio/mpeg')
     .play-bgm
       a(href='#')
         font-awesome-icon#stopBGM.text-primary(:icon="['fas','sync']", spin='', size='3x', data-container='body', data-toggle='popover', data-trigger='hover', data-placement='top', data-content='停止播放BGM', @click.prevent='musicStatus', v-if='bgmStatus')

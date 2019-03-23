@@ -18,7 +18,7 @@
           button.btn-end
             | 結束
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='/static/01.mp3', type='audio/mpeg')
+      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/01.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>
@@ -58,7 +58,7 @@ body {
 }
 .login-section {
   height: 100vh;
-  background-image: url(../assets/img/RTC_1920_1080.jpg);
+  background-image: url(~@/assets/img/RTC_1920_1080.jpg);
   background-position: center top;
   position: relative;
   cursor: url(../assets/img/normal_select.png), auto;

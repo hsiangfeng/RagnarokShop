@@ -111,7 +111,7 @@
               font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === cacheModelItem.id')
               | 加入購物車
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
-      source(src='/static/login@2.mp3', type='audio/mpeg')
+      source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/login%402.mp3', type='audio/mpeg')
 </template>
 
 <style lang="scss" scoped>
