@@ -287,7 +287,6 @@ export default {
     },
     openModel(status, item) {
       const vm = this;
-      console.log(status);
       switch (status) {
         case 'new':
           vm.modelTitle = '新增產品';

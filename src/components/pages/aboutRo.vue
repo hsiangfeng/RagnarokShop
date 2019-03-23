@@ -19,7 +19,7 @@
         .container
           .row
             .col-md-6
-              img(src="../../assets/img/about/00007711.jpg").img-fluid.about-img
+              img(src='../../assets/img/about/00007711.jpg').img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .h-100
                 .about-content
@@ -34,7 +34,7 @@
         .container
           .row.flex-md-row-reverse
             .col-md-6
-              img(src="../../assets/img/about/00007339.jpg").img-fluid.about-img
+              img(src='../../assets/img/about/00007339.jpg').img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .h-100
                 .about-content
@@ -49,7 +49,7 @@
         .container
           .row
             .col-md-6
-              img(src="../../assets/img/about/00007713.jpg").img-fluid.about-img
+              img(src='../../assets/img/about/00007713.jpg').img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .h-100
                 .about-content
@@ -66,7 +66,7 @@
         .container
           .row.flex-md-row-reverse
             .col-md-6
-              img(src="../../assets/img/about/eLfCllc.jpg").img-fluid.about-img
+              img(src='../../assets/img/about/eLfCllc.jpg').img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .h-100
                 .about-content
@@ -81,7 +81,7 @@
         .container
           .row
             .col-md-6
-              img(src="../../assets/img/about/00007667.jpg").img-fluid.about-img
+              img(src='../../assets/img/about/00007667.jpg').img-fluid.about-img
             .col-md-6.d-flex.justify-content-center
               .h-100
                 .about-content

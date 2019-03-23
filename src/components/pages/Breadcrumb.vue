@@ -11,6 +11,7 @@
           | {{breadcrumb.productsList}}
       li.breadcrumb-item(aria-current='page' v-if='breadcrumb.productsTitle')
           | {{breadcrumb.productsTitle}}
+          
 </template>
 
 <script>
