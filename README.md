@@ -18,7 +18,7 @@
 	4. 優惠卷管理
 	5. 模擬訂單功能
 ## 使用技術&練習技術
-- VueCli2
+- Vue Cli 2
 - VueRouter
 - VueComponents
 - API
@@ -26,6 +26,8 @@
 - Bootstrap4
 - PUG
 - SCSS
+- Webpack
+- ESlint(aribnb)
 ## 使用Vue-plugin
 - [Vue-fontawesome](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs)
 - [Vue-axios](https://www.npmjs.com/package/vue-axios)
@@ -34,7 +36,7 @@
 - [Vue-awesome-swiper](https://surmon-china.github.io/vue-awesome-swiper/)
 - [Vue-loading-overlay](https://www.npmjs.com/package/vue-loading-overlay)
 - [Vue-router](https://router.vuejs.org/zh/)
-# 前台介紹(簡易)
+# 前台介紹(簡易介紹，太多了)
 ## 過場動畫
 初心者坐騎  
 ![](https://i.imgur.com/UlfR41I.gif)
