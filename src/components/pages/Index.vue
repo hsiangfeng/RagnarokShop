@@ -6,7 +6,6 @@
     Other
     Shop
     Partner
-    CartMessage
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/08.mp3', type='audio/mpeg')
     .play-bgm

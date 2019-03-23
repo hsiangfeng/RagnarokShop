@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    loading(:active.sync='isLoading', :opacity='1')
+    loading(:active.sync='isLoading', :opacity='0.85')
       img(src='@/assets/loading.gif', alt='', srcset='')
       vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
         small.font-weight-normal.typing
@@ -8,47 +8,43 @@
       .banner-text
         vue-typed-js(:strings="['那你還在等什麼?']",
         :fadeOut='true'
-        :startDelay= 1000)
+        :startDelay='1000')
           h3.text-white.text-center
             | 公~我回來了~
             br
             span.typing
         img(src="../../assets/img/AW2775921_04.gif").confound
     .container
-      nav(aria-label='breadcrumb')
-        ol.breadcrumb.bg-transparent
-          li.breadcrumb-item
-            a(href='#') 首頁
-          li.breadcrumb-item.active(aria-current='page') 全部商品
+      Breadcrumb(:breadcrumb='category')
       .content
         .category-list
           ul.list-items.sticky-list
             li
-              a.items(href='#', @click.prevent="category = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
+              a.items(href='#', @click.prevent="category.title = '全部商品',getProducts()", :class="{'active': category == '全部商品' }")
                 img.items-img(src='@/assets/img/yJFR7SP.gif')
                 div 全部商品
             li
-              a.items(href='#', @click.prevent="category = '熱門商品', getProducts()", :class="{'active': category == '熱門商品' }")
+              a.items(href='#', @click.prevent="category.title = '熱門商品', getProducts()", :class="{'active': category == '熱門商品' }")
                 img.items-img(src='@/assets/img/0d86f9da98cabdbbcf6040053a83aaf8.png')
                 div 熱門商品
             li
-              a.items(href='#', @click.prevent="category = '組合優惠', getProducts()", :class="{'active': category == '組合優惠' }")
+              a.items(href='#', @click.prevent="category.title = '組合優惠', getProducts()", :class="{'active': category == '組合優惠' }")
                 img.items-img(src='@/assets/img/9d8265cf8508453204d3ec5184ab7b99.png')
                 div 組合優惠
             li
-              a.items(href='#', @click.prevent="category = 'MVP卡片', getProducts()", :class="{'active': category == 'MVP卡片' }")
+              a.items(href='#', @click.prevent="category.title = 'MVP卡片', getProducts()", :class="{'active': category == 'MVP卡片' }")
                 img.items-img(src='@/assets/img/663ffbf1ed4fd82dc0f66202293c016d.png')
                 div MVP卡片
             li
-              a.items(href='#', @click.prevent="category = 'MVP武器', getProducts()", :class="{'active': category == 'MVP武器' }")
+              a.items(href='#', @click.prevent="category.title = 'MVP武器', getProducts()", :class="{'active': category == 'MVP武器' }")
                 img.items-img(src='@/assets/img/5a293f45bbbe31fe5fe1de93a5615da8.png')
                 div MVP武器
             li
-              a.items(href='#', @click.prevent="category = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
+              a.items(href='#', @click.prevent="category.title = 'MVP防具', getProducts()", :class="{'active': category == 'MVP防具' }")
                 img.items-img(src='@/assets/img/05249f42bb0c86e0a3f2c55b70e79b75.png')
                 div MVP防具
         .products
-          h3 {{category}}
+          h3 {{category.title}}
           ul.products-list
             li.products-item(v-for='item in getCategory', :key='item.id')
               .products-top.text-center
@@ -67,7 +63,7 @@
                     small 原價 NT$ {{item.origin_price}}
               .products-footer
                 .products-btn(v-if="item.is_enabled")
-                  a.btn.btn-outline-ro.btn-block(href='#' @click.prevent="getOneProduct(item.id)")
+                  router-link.btn.btn-outline-ro.btn-block(:to="'/detailed/' + item.id")
                     font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === item.id')
                     | 詳情了解
                   a.btn.btn-outline-danger.btn-block(href='#' @click.prevent="addCart(item.id)")
@@ -76,40 +72,6 @@
                 .products-btn-disabled(v-else)
                   a.btn.btn-outline-danger.btn-block.disabled(href='#')
                     | 下次請早
-    #openModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-      .modal-dialog(role='document')
-        .modal-content
-          .modal-header.align-items-center
-            h5#exampleModalLabel.modal-title.d-flex.justify-content-between
-              div {{cacheModelItem.title}}
-            span.badge.badge-danger {{cacheModelItem.category}}
-            button.close(type='button', data-dismiss='modal', aria-label='Close')
-              span(aria-hidden='true') ×
-          .modal-body
-            .text-center
-              img(:src="cacheModelItem.imageUrl" width="100px").img-fluid
-            .text-left
-              | {{cacheModelItem.description}}
-            .text-left.blockquote-footer
-              | {{cacheModelItem.content}}
-            .d-flex.justify-content-between.align-items-center
-              span.text-ro-dark.h3 NT$ {{cacheModelItem.price}}
-              del
-                small 原價 NT$ {{cacheModelItem.origin_price}}
-            select.form-control(name='', v-model='cacheModelItem.num')
-              option(:value='num', v-for='num in 10', :key='num')
-                | 購買 {{num}} {{cacheModelItem.unit}}
-          .modal-footer
-            .text-muted.text-nowrap.mr-3(v-if="cacheModelItem.num")
-              | 小計
-              span
-              | {{cacheModelItem.num * cacheModelItem.price}}
-            .text-muted.text-nowrap.mr-3(v-else)
-              | 請選擇購買數量
-            button.btn.btn-secondary(type='button', data-dismiss='modal') 關閉
-            button.btn.btn-primary(type='button' @click.prevent="addCart(cacheModelItem.id, cacheModelItem.num)")
-              font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === cacheModelItem.id')
-              | 加入購物車
     audio#roBGM(loop='', muted='', webkit-playsinline='true', playsinline='true')
       source(src='https://raw.githubusercontent.com/hsiangfeng/RagnarokShop/gh-pages/static/login%402.mp3', type='audio/mpeg')
 </template>
@@ -278,7 +240,7 @@
 </style>
 
 <script>
-/* global $ */
+import Breadcrumb from './Breadcrumb';
 
 export default {
   data() {
@@ -286,10 +248,13 @@ export default {
       products: [],
       cacheModelItem: {},
       modelTitle: '',
+      counts: 0,
       status: {
         loadingID: '',
       },
-      category: '全部商品',
+      category: {
+        title: '全部商品',
+      },
       isLoading: false,
     };
   },
@@ -312,7 +277,6 @@ export default {
       this.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.cacheModelItem = response.data.product;
-          $('#openModal').modal('show');
           vm.status.loadingID = '';
         } else {
           vm.status.loadingID = '';
@@ -338,8 +302,7 @@ export default {
           this.$bus.$emit('message:push',
             '產品加入購物車成功(*ゝ∀･)v'
             , 'success');
-          this.$cartBus.$emit('cartCreate:push');
-          $('#openModal').modal('hide');
+          this.$bus.$emit('cartCreate:push');
           vm.status.loadingID = '';
         } else if (response.data.message === '加入購物車有誤') {
           vm.status.loadingID = '';
@@ -392,18 +355,21 @@ export default {
     getCategory() {
       const vm = this;
       return vm.products.filter((item) => {
-        if (vm.category === '全部商品') {
+        if (vm.category.title === '全部商品') {
           return item;
           // eslint-disable-next-line no-else-return
         } else {
-          return item.category === vm.category;
+          return item.category === vm.category.title;
         }
       });
     },
   },
+  components: {
+    Breadcrumb,
+  },
   created() {
     this.getProducts();
-    this.category = this.$route.params.data ? this.$route.params.data : '全部商品';
+    this.category.title = this.$route.params.data ? this.$route.params.data : '全部商品';
   },
   mounted() {
     this.autoPlayMusic();

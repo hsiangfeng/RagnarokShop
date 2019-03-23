@@ -3,7 +3,7 @@
     .d-none.d-md-block.cart-pop
       a(href="#" data-toggle="modal" @click.prevent="openModel()" v-if="carts.carts")
         img(src="../../assets/img/cart.png" width="100px").cart-img
-        p.cart-text.bg-danger
+        p.cart-text.bg-danger(v-if='carts.carts.length !== 0' )
           | {{carts.carts.length}}
     #cartsModal.modal.fade(tabindex='-1', role='dialog')
       .modal-dialog(role='document')
@@ -68,6 +68,7 @@
     position: fixed;
     bottom: 5%;
     left: 5%;
+    z-index: 2;
     .cart-img{
       position: relative;
     }
@@ -93,7 +94,9 @@ export default {
   name: 'Cart',
   data() {
     return {
-      carts: [],
+      carts: {
+        carts: [],
+      },
       coupon: '',
       status: {
         loadingItem: false,
@@ -184,7 +187,7 @@ export default {
   created() {
     const vm = this;
     this.getCarts();
-    vm.$cartBus.$on('cartCreate:push', () => {
+    vm.$bus.$on('cartCreate:push', () => {
       vm.getCarts();
     });
   },

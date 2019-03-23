@@ -1,6 +1,6 @@
 <template lang="pug">
   .login-section.d-flex.justify-content-center.align-items-center.flex-column
-    loading(:active.sync='isLoading', :opacity='1')
+    loading(:active.sync='isLoading', :opacity='.9')
       img(src='@/assets/loading.gif', alt='', srcset='')
       vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
         small.font-weight-normal.typing
