@@ -17,7 +17,7 @@
 	3. 訂單管理
 	4. 優惠卷管理
 	5. 模擬訂單功能
-## 使用技術
+## 使用技術&練習技術
 - VueCli2
 - VueRouter
 - VueComponents
@@ -34,6 +34,7 @@
 - [Vue-awesome-swiper](https://surmon-china.github.io/vue-awesome-swiper/)
 - [Vue-loading-overlay](https://www.npmjs.com/package/vue-loading-overlay)
 - [Vue-router](https://router.vuejs.org/zh/)
+# 前台介紹(簡易)
 ## 過場動畫
 初心者坐騎  
 ![](https://i.imgur.com/UlfR41I.gif)
@@ -75,3 +76,10 @@
 [仙境傳說官方網站](https://ro.gnjoy.com.tw/)   
 [仙境傳說(RO)幻想廳](https://rd.fharr.com/)  
 [仙境傳說(RO)透視鏡](http://gametsg.techbang.com/ro/index.php)
+## 聲明
+本作品內圖片、內容等，純粹為個人練習前端使用，不做任何商業用途。
+
+## 作者小言
+還是有很多細節沒有處理得很好(甚至還有一些莫名其妙的BUG!!!!)  
+目前規劃前台若處理完畢將會往後台去做版面的調整讓UX體驗更好一點...  
+說真的沒想到一個電商網站要顧慮的細節如此之多，但是做起來還滿快樂的呢
