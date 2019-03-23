@@ -6,6 +6,7 @@
 [https://hsiangfeng.github.io/RagnarokShop](https://hsiangfeng.github.io/RagnarokShop "https://hsiangfeng.github.io/RagnarokShop")
 ## 簡介
 此作品為Vuejs前端練習，其功能有以下:
+
 - 前台:
 	1. 電商展示(商品分類、單一商品介紹、遊戲內容說明等)
 	2. 購物車
@@ -24,6 +25,7 @@
 - API
 - RWD
 - Bootstrap4
+- JavaScript(ES6、LocalStorage等)
 - PUG
 - SCSS
 - Webpack
