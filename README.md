@@ -1,5 +1,5 @@
 # RagnarokShop (仙境傳說RO電商)
-> 歡迎回到仙境傳說，這是一份Vuejs電商前端練習。
+> 歡迎來到仙境傳說，這是一份Vuejs電商前端練習。
 
 ![](https://i.imgur.com/oVJr0Vf.png)
 ## Demo
