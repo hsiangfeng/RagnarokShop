@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    loading(:active.sync='isLoading', :opacity='1')
+    loading(:active.sync='isLoading', :opacity='0.85')
       img(src='@/assets/loading.gif', alt='', srcset='')
       vue-typed-js.justify-content-center.align-items-center(:strings="['波利加載中…']")
         small.font-weight-normal.typing

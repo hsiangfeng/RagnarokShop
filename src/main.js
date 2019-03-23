@@ -62,7 +62,6 @@ new Vue({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    // window.alert('請先登入在執行此動作。');
     const url = `${process.env.APIPATH}/api/user/check`;
     axios.post(url).then((response) => {
       if (response.data.success) {

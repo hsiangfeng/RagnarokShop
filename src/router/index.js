@@ -4,6 +4,7 @@ import Layout from '@/components/Layout';
 import Index from '@/components/pages/Index';
 import Products from '@/components/pages/Products';
 import Login from '@/components/Login';
+import Detailed from '@/components/pages/Detailed';
 import Dashboard from '@/components/admin/Dashboard';
 import ProductsList from '@/components/admin/pages/ProductsList';
 import ProductsCard from '@/components/admin/pages/ProductsCard';
@@ -51,6 +52,11 @@ export default new Router({
           path: '/products',
           name: 'Products',
           component: Products,
+        },
+        {
+          path: '/detailed/:productsId',
+          name: 'Detailed',
+          component: Detailed,
         },
         {
           path: '/customer',
