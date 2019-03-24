@@ -55,13 +55,8 @@ export default {
   },
   methods: {
     navbarToggler() {
-      const windowWidth = $(window).width();
-      $(() => {
-        if (windowWidth <= 991) {
-          $('.navbar a').on('click', () => {
-            $('.navbar-toggler').click();
-          });
-        }
+      $('.navbar a').on('click', () => {
+        $('.navbar-toggler').click();
       });
     },
   },
