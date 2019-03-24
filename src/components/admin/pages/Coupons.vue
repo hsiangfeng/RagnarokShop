@@ -111,12 +111,12 @@ export default {
   },
   methods: {
     getCoupons(page = 1) {
+      const vm = this;
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/admin/coupons?page=${page}`;
-      const vm = this;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.pagination = response.data.pagination;
           vm.coupons = response.data.coupons;
@@ -125,7 +125,7 @@ export default {
           vm.$router.push('/login');
           vm.isLoading = false;
         } else {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -148,31 +148,31 @@ export default {
         }`;
       }
       vm.status.loadingItem = true;
-      this.$http[httpMethods](url, { data: vm.cacheCoupons }).then((response) => {
+      vm.$http[httpMethods](url, { data: vm.cacheCoupons }).then((response) => {
         if (response.data.success) {
           vm.status.loadingItem = false;
           switch (httpMethods) {
             case 'post':
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料新增成功(*ゝ∀･)v'
                 , 'success');
               break;
             case 'put':
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料更新成功(*ゝ∀･)v'
                 , 'success');
               break;
             default:
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料新增成功(*ゝ∀･)v'
                 , 'success');
               break;
           }
-          this.getCoupons();
+          vm.getCoupons();
           $('#couponsModal').modal('hide');
         } else {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -185,17 +185,17 @@ export default {
         process.env.COUSTOMPATH
       }/admin/coupon/${vm.cacheCoupons.id}`;
       vm.status.loadingItem = true;
-      this.$http.delete(url).then((response) => {
+      vm.$http.delete(url).then((response) => {
         if (response.data.success) {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '資料刪除成功(*ゝ∀･)v'
             , 'success');
           $('#deleteCouponsModal').modal('hide');
-          this.getCoupons();
+          vm.getCoupons();
         } else {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

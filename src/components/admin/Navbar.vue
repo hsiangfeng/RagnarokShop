@@ -47,9 +47,9 @@ export default {
   },
   methods: {
     signOut() {
-      const url = `${process.env.APIPATH}/logout`;
       const vm = this;
-      this.$http.post(url, vm.user).then((response) => {
+      const url = `${process.env.APIPATH}/logout`;
+      vm.$http.post(url, vm.user).then((response) => {
         if (response.data.success) {
           vm.$router.push('/login');
         }

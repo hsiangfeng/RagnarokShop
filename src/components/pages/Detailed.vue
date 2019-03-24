@@ -146,7 +146,7 @@ export default {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.COUSTOMPATH}/products/all`;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         let products = [];
         products = response.data.products;
         vm.products = [];
@@ -163,14 +163,14 @@ export default {
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/product/${id}`;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.cacheModelItem = response.data.product;
           vm.categoryFilter = vm.cacheModelItem.category;
           vm.category.productsTitle = vm.cacheModelItem.title;
           localStorage.setItem('likecategory', JSON.stringify(vm.cacheModelItem.category));
         } else {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -188,22 +188,22 @@ export default {
         product_id: id,
         qty,
       };
-      this.$http.post(url, { data: cartContent }).then((response) => {
+      vm.$http.post(url, { data: cartContent }).then((response) => {
         if (response.data.message === '已加入購物車') {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '產品加入購物車成功(*ゝ∀･)v'
             , 'success');
-          this.$bus.$emit('cartCreate:push');
+          vm.$bus.$emit('cartCreate:push');
           vm.status.loadingID = '';
         } else if (response.data.message === '加入購物車有誤') {
           vm.status.loadingID = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
         } else {
           vm.status.loadingID = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

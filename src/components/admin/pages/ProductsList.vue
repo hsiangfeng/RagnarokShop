@@ -65,7 +65,7 @@
                   label(for='customFile')
                     | 或 上傳圖片
                     font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.fileUploading')
-                      img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='status.fileUploading', width='25px')
+                    img(src='@/assets/img/yJFR7SP.gif', alt='努力上傳中', v-if='status.fileUploading', width='25px')
                   input#customFile.form-control(type='file', ref='files', @change='updataProductsImg()')
                 img.img-fluid(img='https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80', alt='', :src='tempProducts.imageUrl')
               .col-sm-8
@@ -156,12 +156,12 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
+      const vm = this;
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/admin/products?page=${page}`;
-      const vm = this;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.pagination = response.data.pagination;
           vm.products = response.data.products;
@@ -170,7 +170,7 @@ export default {
           vm.$router.push('/login');
           vm.isLoading = false;
         } else {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -193,22 +193,22 @@ export default {
         }`;
       }
       vm.status.loadingItem = true;
-      this.$http[httpMethods](url, { data: vm.tempProducts }).then((response) => {
+      vm.$http[httpMethods](url, { data: vm.tempProducts }).then((response) => {
         if (response.data.success) {
           $('#productsModal').modal('hide');
           switch (httpMethods) {
             case 'post':
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料新增成功(*ゝ∀･)v'
                 , 'success');
               break;
             case 'put':
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料更新成功(*ゝ∀･)v'
                 , 'success');
               break;
             default:
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '資料新增成功(*ゝ∀･)v'
                 , 'success');
               break;
@@ -218,7 +218,7 @@ export default {
           vm.getProducts();
         } else {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -226,28 +226,28 @@ export default {
       });
     },
     updataProductsImg() {
-      const uploadefFile = this.$refs.files.files[0];
       const vm = this;
+      const uploadefFile = vm.$refs.files.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadefFile);
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/admin/upload`;
       vm.status.fileUploading = true;
-      this.$http.post(url, formData, {
+      vm.$http.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       }).then((response) => {
         if (response.data.success) {
           vm.$set(vm.tempProducts, 'imageUrl', response.data.imageUrl);
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '圖片上傳成功(*ゝ∀･)v'
             , 'success');
           vm.status.fileUploading = false;
         } else {
           vm.status.fileUploading = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -260,7 +260,7 @@ export default {
         process.env.COUSTOMPATH
       }/admin/product/${vm.tempProducts.id}`;
       vm.status.loadingItem = true;
-      this.$http.delete(url).then((response) => {
+      vm.$http.delete(url).then((response) => {
         if (response.data.success) {
           vm.status.loadingItem = false;
           $('#deleteProductsModal').modal('hide');
@@ -270,7 +270,7 @@ export default {
           vm.getProducts();
         } else {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

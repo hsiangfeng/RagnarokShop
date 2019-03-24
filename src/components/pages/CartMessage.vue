@@ -44,16 +44,10 @@
                 .input-group-append
                   button.btn.btn-outline-secondary(type='button', @click='userCoupon()')
                     | 套用優惠碼
-                  button.btn.btn-outline-secondary.customer-code(type='button'
-                  data-container="body"
-                  data-toggle="popover"
-                  data-content="試試輸入code打五折")
-                    | 取得優惠碼
-                  button.btn.btn-outline-secondary.customer-ragnarok(type='button'
-                  data-container="body"
-                  data-toggle="popover"
-                  data-content="如果想打到骨折就輸入ragnarok")
-                    | 想打到骨折
+              .alert.alert-primary
+                | 試試輸入code打五折
+              .alert.alert-danger
+                | 如果想打到骨折就輸入ragnarok
             div(v-else-if='carts.carts.length === 0' )
               .text-center
                 font-awesome-icon(:icon="['fas', 'shopping-cart']" size="4x").text-ro
@@ -119,11 +113,11 @@ export default {
         process.env.COUSTOMPATH
       }/cart`;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.carts = response.data.data;
         } else {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -131,20 +125,20 @@ export default {
       });
     },
     userCoupon() {
+      const vm = this;
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/coupon`;
-      const vm = this;
       vm.isLoading = true;
       const couponCode = {
         code: vm.coupon,
       };
-      this.$http.post(url, { data: couponCode }).then((response) => {
+      vm.$http.post(url, { data: couponCode }).then((response) => {
         if (response.data.success) {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '優惠碼套用成功(*ゝ∀･)v'
             , 'success');
-          this.getCarts();
+          vm.getCarts();
         } else if (response.data.message === '找不到優惠券!') {
           vm.isLoading = false;
           this.$bus.$emit('message:push',
@@ -152,7 +146,7 @@ export default {
             , 'danger');
         } else if (response.data.message === '優惠券無法無法使用或已過期') {
           vm.isLoading = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '優惠券無法無法使用或已過期惹，好糗Σ( ° △ °|||)︴'
             , 'danger');
         }
@@ -164,16 +158,16 @@ export default {
         process.env.COUSTOMPATH
       }/cart/${id}`;
       vm.status.loadingItem = id;
-      this.$http.delete(url).then((response) => {
+      vm.$http.delete(url).then((response) => {
         if (response.data.success) {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '產品刪除成功(*ゝ∀･)v'
             , 'success');
           vm.status.loadingItem = '';
-          this.getCarts();
+          vm.getCarts();
         } else {
           vm.status.loadingItem = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -187,33 +181,13 @@ export default {
     openModel() {
       $('#cartsModal').modal('show');
     },
-    popoverBtn() {
-      $(() => {
-        $('[data-toggle="popover"]').popover();
-      });
-      $('.customer-code').popover({
-        placement: 'top',
-      });
-      $('.customer-ragnarok').popover({
-        placement: 'top',
-      });
-      $('.customer-code').on('show.bs.popover', () => {
-        $('.customer-ragnarok').popover('hide');
-      });
-      $('.customer-ragnarok').on('show.bs.popover', () => {
-        $('.customer-code').popover('hide');
-      });
-    },
   },
   created() {
     const vm = this;
-    this.getCarts();
+    vm.getCarts();
     vm.$bus.$on('cartCreate:push', () => {
       vm.getCarts();
     });
-  },
-  mounted() {
-    this.popoverBtn();
   },
 };
 </script>

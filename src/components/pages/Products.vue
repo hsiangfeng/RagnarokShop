@@ -269,18 +269,18 @@ export default {
       });
     },
     getOneProduct(id) {
+      const vm = this;
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/product/${id}`;
-      const vm = this;
       vm.status.loadingID = id;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.cacheModelItem = response.data.product;
           vm.status.loadingID = '';
         } else {
           vm.status.loadingID = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -297,22 +297,22 @@ export default {
         product_id: id,
         qty,
       };
-      this.$http.post(url, { data: cartContent }).then((response) => {
+      vm.$http.post(url, { data: cartContent }).then((response) => {
         if (response.data.message === '已加入購物車') {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '產品加入購物車成功(*ゝ∀･)v'
             , 'success');
-          this.$bus.$emit('cartCreate:push');
+          vm.$bus.$emit('cartCreate:push');
           vm.status.loadingID = '';
         } else if (response.data.message === '加入購物車有誤') {
           vm.status.loadingID = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
         } else {
           vm.status.loadingID = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -325,16 +325,16 @@ export default {
         process.env.COUSTOMPATH
       }/cart/${id}`;
       vm.status.loadingItem = id;
-      this.$http.delete(url).then((response) => {
+      vm.$http.delete(url).then((response) => {
         if (response.data.success) {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '產品刪除成功(*ゝ∀･)v'
             , 'success');
           vm.status.loadingItem = '';
-          this.getCarts();
+          vm.getCarts();
         } else {
           vm.status.loadingItem = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

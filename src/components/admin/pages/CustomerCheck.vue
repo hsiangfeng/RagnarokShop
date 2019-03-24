@@ -83,16 +83,16 @@ export default {
         process.env.COUSTOMPATH
       }/pay/${vm.orderId}`;
       vm.isLoading = true;
-      this.$http.post(url).then((response) => {
+      vm.$http.post(url).then((response) => {
         if (response.data.success) {
           vm.isLoading = false;
           vm.getOrder();
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '感謝你的購買(*ゝ∀･)v'
             , 'success');
         } else {
           vm.isLoading = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

@@ -199,7 +199,7 @@ export default {
         process.env.COUSTOMPATH
       }/admin/orders?page=${page}`;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.pagination = response.data.pagination;
           vm.orders = response.data.orders;
@@ -208,7 +208,7 @@ export default {
           vm.$router.push('/login');
           vm.isLoading = false;
         } else {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -222,17 +222,17 @@ export default {
         process.env.COUSTOMPATH
       }/admin/order/${vm.tempOrders.id}`;
       vm.status.loadingItem = true;
-      this.$http.put(url, { data: vm.tempOrders }).then((response) => {
+      vm.$http.put(url, { data: vm.tempOrders }).then((response) => {
         if (response.data.success) {
           vm.status.loadingItem = false;
           $('#ordersModal').modal('hide');
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '資料更新成功(*ゝ∀･)v'
             , 'success');
-          this.getOrders();
+          vm.getOrders();
         } else {
           vm.status.loadingItem = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

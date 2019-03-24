@@ -289,16 +289,16 @@ export default {
         process.env.COUSTOMPATH
       }/cart/${id}`;
       vm.status.loadingItem = id;
-      this.$http.delete(url).then((response) => {
+      vm.$http.delete(url).then((response) => {
         if (response.data.success) {
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             '產品刪除成功(*ゝ∀･)v'
             , 'success');
-          this.getCarts();
+          vm.getCarts();
           vm.status.loadingItem = '';
         } else {
           vm.status.loadingItem = '';
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -310,31 +310,31 @@ export default {
       const url = `${process.env.APIPATH}/api/${
         process.env.COUSTOMPATH
       }/order`;
-      this.$validator.validate().then((result) => {
+      vm.$validator.validate().then((result) => {
         if (result) {
-          this.$http.post(url, { data: vm.form }).then((response) => {
+          vm.$http.post(url, { data: vm.form }).then((response) => {
             if (response.data.message === '已建立訂單') {
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 '產品已成功建立訂單啦(*ゝ∀･)v'
                 , 'success');
               vm.$router.push(`/customer_crders/${response.data.orderId}`);
             } else if (response.data.message === '說明欄位為必填') {
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 `說明欄位為必填，好糗Σ( ° △ °|||)︴
                 ${response.data.message}`
                 , 'danger');
             } else if (response.data.message === '尚無用戶資料') {
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 `尚無用戶資料，好糗Σ( ° △ °|||)︴
                 ${response.data.message}`
                 , 'danger');
             } else if (response.data.message === '購物車內無資料') {
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 `你購物車內沒東西要我怎麼送資料，好糗Σ( ° △ °|||)︴
                 ${response.data.message}`
                 , 'danger');
             } else {
-              this.$bus.$emit('message:push',
+              vm.$bus.$emit('message:push',
                 `出現錯誤惹，好糗Σ( ° △ °|||)︴
                 ${response.data.message}`
                 , 'danger');
