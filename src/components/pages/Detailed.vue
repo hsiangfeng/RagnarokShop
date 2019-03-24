@@ -44,7 +44,7 @@
               | {{counts * cacheModelItem.price | currency}}
           .text-right
             router-link.btn.btn-secondary(:to="{name: 'Products'}") 返回
-            button.btn.btn-outline-ro.ml-1(type='button' @click.prevent="addCart(cacheModelItem.id)")
+            button.btn.btn-outline-ro.ml-1(type='button' @click.prevent="addCart(cacheModelItem.id, counts)")
               font-awesome-icon(:icon="['fas','spinner']", spin='', v-if='status.loadingID === cacheModelItem.id')
               | 加入購物車
       .container.my-10
