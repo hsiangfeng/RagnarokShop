@@ -39,7 +39,7 @@
           .input-group.mb-3.input-group-sm
             input.form-control(type='text', placeholder='請輸入優惠碼', v-model='coupon')
             .input-group-append
-              button.btn.btn-outline-secondary(type='button', @click='userCoupon()')
+              button.btn.btn-outline-secondary.customer-submit(type='button', @click='userCoupon()')
                 | 套用優惠碼
               button.btn.btn-outline-secondary.customer-code(type='button'
               data-container="body"
@@ -234,17 +234,25 @@ export default {
       $(() => {
         $('[data-toggle="popover"]').popover();
       });
-      $('.customer-code').popover({
-        placement: 'top',
+      $('.customer-code').popover({ placement: 'top' }).click(() => {
+        setTimeout(() => {
+          $('.customer-code').popover('hide');
+        }, 2500);
       });
-      $('.customer-ragnarok').popover({
-        placement: 'top',
+      $('.customer-ragnarok').popover({ placement: 'top' }).click(() => {
+        setTimeout(() => {
+          $('.customer-ragnarok').popover('hide');
+        }, 2500);
       });
       $('.customer-code').on('show.bs.popover', () => {
         $('.customer-ragnarok').popover('hide');
       });
       $('.customer-ragnarok').on('show.bs.popover', () => {
         $('.customer-code').popover('hide');
+      });
+      $('.customer-submit').click(() => {
+        $('.customer-code').popover('hide');
+        $('.customer-ragnarok').popover('hide');
       });
     },
   },

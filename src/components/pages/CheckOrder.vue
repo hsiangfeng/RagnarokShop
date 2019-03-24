@@ -70,13 +70,13 @@ export default {
         process.env.COUSTOMPATH
       }/order/${vm.orderId}`;
       vm.isLoading = true;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.order = response.data.order;
           vm.isLoading = false;
         } else {
           vm.isLoading = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');
@@ -89,7 +89,7 @@ export default {
         process.env.COUSTOMPATH
       }/pay/${vm.orderId}`;
       vm.isLoading = true;
-      this.$http.post(url).then((response) => {
+      vm.$http.post(url).then((response) => {
         if (response.data.success) {
           vm.isLoading = false;
           vm.getOrder();
@@ -98,7 +98,7 @@ export default {
             , 'success');
         } else {
           vm.isLoading = false;
-          this.$bus.$emit('message:push',
+          vm.$bus.$emit('message:push',
             `出現錯誤惹，好糗Σ( ° △ °|||)︴
             ${response.data.message}`
             , 'danger');

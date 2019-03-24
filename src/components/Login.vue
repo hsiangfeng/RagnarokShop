@@ -165,10 +165,10 @@ export default {
   },
   methods: {
     signin() {
-      const url = `${process.env.APIPATH}/admin/signin`;
       const vm = this;
+      const url = `${process.env.APIPATH}/admin/signin`;
       vm.isLoading = true;
-      this.$http.post(url, vm.user).then((response) => {
+      vm.$http.post(url, vm.user).then((response) => {
         if (response.data.success) {
           vm.isLoading = false;
           vm.$router.push('/admin');
