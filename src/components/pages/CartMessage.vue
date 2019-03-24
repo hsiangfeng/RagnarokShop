@@ -60,7 +60,7 @@
                 .h3.text-ro oh! 竟然沒東西 !
           .modal-footer
             button.btn.btn-secondary(type='button', data-dismiss='modal') 取消
-            a(href="https://hsiangfeng.github.io/RagnarokShop/#/customer").btn.btn-outline-ro 結帳
+            a(href='#' @click.prevent="nextCustomer()").btn.btn-outline-ro 結帳
 </template>
 
 <style lang="scss" scoped>
@@ -180,8 +180,29 @@ export default {
         }
       });
     },
+    nextCustomer() {
+      $('#cartsModal').modal('hide');
+      this.$router.push('/customer');
+    },
     openModel() {
       $('#cartsModal').modal('show');
+    },
+    popoverBtn() {
+      $(() => {
+        $('[data-toggle="popover"]').popover();
+      });
+      $('.customer-code').popover({
+        placement: 'top',
+      });
+      $('.customer-ragnarok').popover({
+        placement: 'top',
+      });
+      $('.customer-code').on('show.bs.popover', () => {
+        $('.customer-ragnarok').popover('hide');
+      });
+      $('.customer-ragnarok').on('show.bs.popover', () => {
+        $('.customer-code').popover('hide');
+      });
     },
   },
   created() {
@@ -190,6 +211,9 @@ export default {
     vm.$bus.$on('cartCreate:push', () => {
       vm.getCarts();
     });
+  },
+  mounted() {
+    this.popoverBtn();
   },
 };
 </script>
