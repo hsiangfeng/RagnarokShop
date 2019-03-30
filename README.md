@@ -1,7 +1,7 @@
 # RagnarokShop (仙境傳說RO電商)
 > 歡迎來到仙境傳說，這是一份VueCli2電商前端練習。
 
-![](https://i.imgur.com/oVJr0Vf.png)
+![](https://i.imgur.com/Y0g9oAD.png)
 ## Demo
 [https://hsiangfeng.github.io/RagnarokShop](https://hsiangfeng.github.io/RagnarokShop "https://hsiangfeng.github.io/RagnarokShop")
 ## 簡介
@@ -41,20 +41,20 @@
 # 前台介紹(簡易介紹，太多了)
 ## 過場動畫
 初心者坐騎  
-![](https://i.imgur.com/UlfR41I.gif)
+![](https://i.imgur.com/wuAlbMH.gif)
 ## 首頁畫面
-![](https://i.imgur.com/oVJr0Vf.png)
+![](https://i.imgur.com/Y0g9oAD.png)
 ## 全部商品
-![](https://i.imgur.com/x4pcYoB.png)
+![](https://i.imgur.com/Zi2yAtb.png)
 ## 關於仙境
-![](https://i.imgur.com/u9mJTEn.png)
+![](https://i.imgur.com/Z3TtkPK.png)
 ## 購物車
-![](https://i.imgur.com/d4yar96.png)
+![](https://i.imgur.com/LCGPYqU.png)
 ## 後台登入介面
-![](https://i.imgur.com/2F40njd.png)
+![](https://i.imgur.com/YizWZjI.png)
 ## 小商人購物車
-![](https://i.imgur.com/CBaLUK0.png)
-![](https://i.imgur.com/S7OnEeq.png)
+![](https://i.imgur.com/F9lau9O.png)
+![](https://i.imgur.com/ElIATuk.png)
 
 ## 更多內容
 其中裡面還包含經典音樂，約四首左右 
@@ -64,13 +64,13 @@
 - 其他RO音樂
 
 表情符號  
-<img src="https://i.imgur.com/nuXdSNM.gif" width="200">
-<img src="https://imgur.com/iZ4eu8S.gif" width="200">
-<img src="https://imgur.com/lIGtuvw.gif" width="200">
+<img src="https://i.imgur.com/hx4QtQ3.gif" width="200">
+<img src="https://i.imgur.com/ZL0L2C6.gif" width="200">
+<img src="https://i.imgur.com/NoFEHC2.gif" width="200">
 
 後臺登入游標  
-![](https://i.imgur.com/yR7B028.png)  
-![](https://i.imgur.com/uDcnW22.png)
+![](https://i.imgur.com/2y0EItM.png)  
+![](https://i.imgur.com/sjoXUUe.png)
 
 其餘更多細節部分，歡迎至Demo網站觀看。  
 
