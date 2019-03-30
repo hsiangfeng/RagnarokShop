@@ -38,7 +38,7 @@
 - [Vue-awesome-swiper](https://surmon-china.github.io/vue-awesome-swiper/)
 - [Vue-loading-overlay](https://www.npmjs.com/package/vue-loading-overlay)
 - [Vue-router](https://router.vuejs.org/zh/)
-# 前台介紹(簡易介紹，太多了)
+# 前端介紹
 ## 過場動畫
 初心者坐騎  
 ![](https://i.imgur.com/wuAlbMH.gif)
@@ -86,4 +86,4 @@
 ## 作者小言
 還是有很多細節沒有處理得很好(甚至還有一些莫名其妙的BUG!!!!)  
 目前規劃前台若處理完畢將會往後台去做版面的調整讓UX體驗更好一點...  
-說真的沒想到一個電商網站要顧慮的細節如此之多，但是做起來還滿快樂的呢
+說真的沒想到一個電商網站要顧慮的細節如此之多，但是做起來還滿快樂的呢。
